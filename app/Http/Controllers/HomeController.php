@@ -133,12 +133,17 @@ class HomeController extends Controller
                               "email.unique"=>"Email dã có người sử dụng",
                               "password1.required"=>"Password phải trên 6 ký tự",
                               "re_password.same"=>"pass nhập lại không đúng"]);
-        $user = new User();
-        $user->full_name = $req->full_name;
-        $user->email = $req->email;
-        $user->password = Hash::make($req->password1);
-        $user->save();
-        return redirect()->back()->with('ThanhCong','Tạo tài khoản thành công');
+        $emailuser = User::find('email',$req->email);
+        if($emailuser){
+            return redirect()->back()->with('ThanhCong','Tài khoản đã tồn tại');
+        }else{
+            $user = new User();
+            $user->full_name = $req->full_name;
+            $user->email = $req->email;
+            $user->password = Hash::make($req->password1);
+            $user->save();
+            return redirect()->back()->with('ThanhCong','Tạo tài khoản thành công');
+        }
     }
     public function postSignIn(Request $req){
         $this->validate($req,["email"=>"required|email",
