@@ -164,7 +164,7 @@
                             @if (Auth::check())
                                 @if(Auth::user()->authority == 1)
                                 <li class="" style="background-color:#E33539">
-                                    <a class="nav-stylehead"  href="#">Add a product</a>
+                                    <a class="nav-stylehead"  href="{{route('addproduct')}}">Add a product</a>
                                 </li>
                                 @else
                                 <li class="">

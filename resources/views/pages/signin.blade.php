@@ -1,6 +1,6 @@
 @extends('master')
 @section('content')
-<div class="modal-body modal-body-sub_agile" >
+<div class="modal-body modal-body-sub_agile" style="margin-left:500px;margin-right:500px;text-align:center">
     <div class="main-mailposi">
         <span class="fa fa-envelope-o" aria-hidden="true"></span>
     </div>

@@ -1,6 +1,6 @@
 @extends('master')
 @section('content')
-<div class="modal-body modal-body-sub_agile">
+<div class="modal-body modal-body-sub_agile" style="margin-left:400px;margin-right:400px;text-align:center">
 <div class="modal_body_left modal_body_left1">
         <h3 class="agileinfo_sign">Sign Up</h3>
         <p>
