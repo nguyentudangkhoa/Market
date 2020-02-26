@@ -13,9 +13,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', ['as'=>'trangchu',
+                 'uses'=>'HomeController@Index']);
 Route::get('index',['as'=>'trangchu',
                     'uses'=>'HomeController@Index']);
 Route::get('single/{id?}',['as'=>'single',
@@ -62,3 +61,11 @@ Route::get('admin',['as'=>'admin',
                       'uses'=>'HomeController@Admin']);
 Route::post('deleteitem/{id?}',['as'=>'deleteitem',
                       'uses'=>'HomeController@DeleteItem']);
+Route::get('addproduct',['as'=>'addproduct',
+                      'uses'=>'HomeController@AddProduct']);
+Route::post('postFile',['as'=>'postFile',
+                        'uses'=>'HomeController@postFile']);
+Route::get('update/{id?}',['as'=>'update',
+                        'uses'=>'HomeController@UpdateProduct']);
+Route::post('updateProduct',['as'=>'updateProduct',
+                        'uses'=>'HomeController@UpdateButton']);
