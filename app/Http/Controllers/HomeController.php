@@ -311,4 +311,7 @@ class HomeController extends Controller
             }
         }
     }
+    public function ProfileDetails(){
+        return view('pages.profile');
+    }
 }
