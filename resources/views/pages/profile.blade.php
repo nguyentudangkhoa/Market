@@ -16,7 +16,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         function hideURLbar(){ window.scrollTo(0,1); } </script>
 <base href="{{asset('')}}">
 <!-- js -->
-<script src="source/js/jquery-2.1.3.min.js" type="text/javascript"></script>
+<script src="source/js/jquery-2.1.4.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="source/js/sliding.form.js"></script>
 <!-- //js -->
 <link href="source/css/style3.css" rel="stylesheet" type="text/css" media="all" />
@@ -26,6 +26,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
 </head>
 <body>
+    <div>
+        <h1>
+            <a class="HomepPage" href="{{route('trangchu')}}">
+                <img src="source/images/logo2.png" alt=" ">
+            </a>
+        </h1>
+    </div>
 	<div class="main">
 		<h1>Consultancy Profile Widget</h1>
 		<div id="navigation" style="display:none;" class="w3_agile">
@@ -45,44 +52,39 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div id="steps" style="margin:0 auto;" class="agileits w3_steps">
 				<form id="formElem" name="formElem" action="#" method="post" class="w3_form w3l_form_fancy">
 					<fieldset class="step agileinfo w3ls_fancy_step">
-						<legend>About</legend>
+						<legend>Profile</legend>
 						<div class="abt-agile">
 							<div class="abt-agile-left">
 							</div>
 							<div class="abt-agile-right">
-								<h3>Nulla fringilla</h3>
-								<h5>Job Consultant</h5>
+								<h3>{{$user->full_name}}</h3>
+								<h5>Guest</h5>
 								<ul class="address">
 									<li>
 										<ul class="address-text">
 											<li><b>D.O.B </b></li>
-											<li>: 03-02-1984</li>
+											<li>: not done yet</li>
 										</ul>
 									</li>
 									<li>
 										<ul class="address-text">
 											<li><b>PHONE </b></li>
-											<li>: +00 141 352 6738</li>
+											<li>: {{$user->phone}}</li>
 										</ul>
 									</li>
 									<li>
 										<ul class="address-text">
 											<li><b>ADDRESS </b></li>
-											<li>: 22 Russell Street, AUSTRALIA.</li>
+											<li>: {{$user->address}}.</li>
 										</ul>
 									</li>
 									<li>
 										<ul class="address-text">
 											<li><b>E-MAIL </b></li>
-											<li><a href="mailto:example@mail.com">: mail@example.com</a></li>
+                                        <li><a href="mailto:example@mail.com">: {{$user->email}}</a></li>
 										</ul>
 									</li>
-									<li>
-										<ul class="address-text">
-											<li><b>WEBSITE </b></li>
-											<li><a href="http://w3layouts.com">: www.myresume.com</a></li>
-										</ul>
-									</li>
+
 								</ul>
 							</div>
 								<div class="clear"></div>
@@ -96,44 +98,44 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<div class="w3_agile_work_effect">
 										<ul>
 											<li>
-												<a href="images/c1.jpg" class="sb" title="Quis Nostrud Exercitation Ullamco Laboris Quis Autem Vel Eum Iure Reprehenderit">
+												<a href="source/images/c1.jpg" class="sb" title="Quis Nostrud Exercitation Ullamco Laboris Quis Autem Vel Eum Iure Reprehenderit">
 													<figure>
-														<img src="images/c1.jpg" alt=" " class="img-responsive" />
+														<img src="source/images/c1.jpg" alt=" " class="img-responsive" />
 													</figure>
 												</a>
 											</li>
 											<li>
-												<a href="images/c2.jpg" class="sb" title="Quis Nostrud Exercitation Ullamco Laboris Quis Autem Vel Eum Iure Reprehenderit">
+												<a href="source/images/c2.jpg" class="sb" title="Quis Nostrud Exercitation Ullamco Laboris Quis Autem Vel Eum Iure Reprehenderit">
 													<figure>
-														<img src="images/c2.jpg" alt=" " class="img-responsive" />
+														<img src="source/images/c2.jpg" alt=" " class="img-responsive" />
 													</figure>
 												</a>
 											</li>
 											<li>
-												<a href="images/c3.jpg" class="sb" title="Quis Nostrud Exercitation Ullamco Laboris Quis Autem Vel Eum Iure Reprehenderit">
+												<a href="source/images/c3.jpg" class="sb" title="Quis Nostrud Exercitation Ullamco Laboris Quis Autem Vel Eum Iure Reprehenderit">
 													<figure>
-														<img src="images/c3.jpg" alt=" " class="img-responsive" />
+														<img src="source/images/c3.jpg" alt=" " class="img-responsive" />
 													</figure>
 												</a>
 											</li>
 											<li>
-												<a href="images/c4.jpg" class="sb" title="Quis Nostrud Exercitation Ullamco Laboris Quis Autem Vel Eum Iure Reprehenderit">
+												<a href="source/images/c4.jpg" class="sb" title="Quis Nostrud Exercitation Ullamco Laboris Quis Autem Vel Eum Iure Reprehenderit">
 													<figure>
-														<img src="images/c4.jpg" alt=" " class="img-responsive" />
+														<img src="source/images/c4.jpg" alt=" " class="img-responsive" />
 													</figure>
 												</a>
 											</li>
 											<li>
-												<a href="images/c5.jpg" class="sb" title="Quis Nostrud Exercitation Ullamco Laboris Quis Autem Vel Eum Iure Reprehenderit">
+												<a href="source/images/c5.jpg" class="sb" title="Quis Nostrud Exercitation Ullamco Laboris Quis Autem Vel Eum Iure Reprehenderit">
 													<figure>
-														<img src="images/c5.jpg" alt=" " class="img-responsive" />
+														<img src="source/images/c5.jpg" alt=" " class="img-responsive" />
 													</figure>
 												</a>
 											</li>
 											<li>
-												<a href="images/c6.jpg" class="sb" title="Quis Nostrud Exercitation Ullamco Laboris Quis Autem Vel Eum Iure Reprehenderit">
+												<a href="source/images/c6.jpg" class="sb" title="Quis Nostrud Exercitation Ullamco Laboris Quis Autem Vel Eum Iure Reprehenderit">
 													<figure>
-														<img src="images/c6.jpg" alt=" " class="img-responsive" />
+														<img src="source/images/c6.jpg" alt=" " class="img-responsive" />
 													</figure>
 												</a>
 											</li>

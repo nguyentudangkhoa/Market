@@ -32,13 +32,20 @@ html, body{
     background: url(../images/1.jpg)repeat 0px 0px;
     background-attachment: fixed;
 	-webkit-background-size:cover;
-	-moz-background-size:cover; 
+	-moz-background-size:cover;
 	background-size:cover;
 	font-family: 'Open Sans', sans-serif;
 }
 h1,h2,h3,h4,h5,h6{
 	font-family: 'Pathway Gothic One', sans-serif;
 	margin:0;
+}
+.HomePage{
+    text-decoration: none;
+    color: whitesmoke;
+    font-family: Arial, Helvetica, sans-serif;
+    size: 30pt;
+    background-color: whitesmoke;
 }
 ul,label{
 	margin:0;
@@ -368,15 +375,15 @@ ul.address li ul.address-text li {
 }
 
 :-moz-placeholder { /* Firefox 18- */
-   color: #AFAFAF; 
+   color: #AFAFAF;
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
-   color: #AFAFAF;  
+   color: #AFAFAF;
 }
 
-:-ms-input-placeholder {  
-   color: #AFAFAF;  
+:-ms-input-placeholder {
+   color: #AFAFAF;
 }
 /*-- start-responsive-design --*/
 @media (max-width:736px){
