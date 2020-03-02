@@ -311,6 +311,7 @@ class HomeController extends Controller
             }
         }
     }
+    //Profile user
     public function ProfileDetails(Request $req){
         $user = User::find($req->id);
         return view('pages.profile',compact('user'));

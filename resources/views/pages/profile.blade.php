@@ -4,6 +4,8 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+@if(Auth::check())
+@if(Auth::user()->email == $user->email)
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -81,7 +83,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<li>
 										<ul class="address-text">
 											<li><b>E-MAIL </b></li>
-                                        <li><a href="mailto:example@mail.com">: {{$user->email}}</a></li>
+                                            <li><a href="mailto:example@mail.com">: {{$user->email}}</a></li>
+                                            <li><form action="" method="get" style="margin-top:10px">
+                                                <input type="submit" value="Update" class="btn btn-danger"/>
+                                            </form></li>
 										</ul>
 									</li>
 
@@ -179,3 +184,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<script type="text/javascript" src="source/js/smoothbox.jquery2.js"></script>
 </body>
 </html>
+@else
+<div class="address_form_agile">
+    <h4>Page do not exist</h4>
+</div>
+@endif
+@else
+<div class="address_form_agile">
+    <h4>Page do not exist</h4>
+</div>
+@endif
