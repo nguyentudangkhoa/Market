@@ -6,7 +6,7 @@
 			<div class="container">
 				<ul class="w3_short">
 					<li>
-						<a href="index.html">Home</a>
+                        <a href="{{route('trangchu')}}">Home</a>
 						<i>|</i>
 					</li>
 					<li>Single Page</li>
