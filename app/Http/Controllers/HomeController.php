@@ -337,6 +337,7 @@ class HomeController extends Controller
         ); //Validation
         $userDetail->full_name = $req->full_name;
         $userDetail->address = $req->address;
+        $userDetail->phone = $req->phone_number;
         if ($image->getClientOriginalName('myFile') != "") {
                 if ($req->hasFile('image')) {
                     if (File::exists($image_path)) { //Check existing image
