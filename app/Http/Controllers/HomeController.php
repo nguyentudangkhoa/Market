@@ -274,7 +274,7 @@ class HomeController extends Controller
         if (File::exists($image_path)) { //Check existing image
             File::delete($image_path); //delete image in a file
         }
-        $product->delete(); // delte image in database
+        $product->delete(); // delete image in database
         return redirect()->back()->with('Report', 'Delete successfull');
     }
     //Template update
@@ -316,4 +316,39 @@ class HomeController extends Controller
         $user = User::find($req->id);
         return view('pages.profile',compact('user'));
     }
+    public function UpdateProfile(Request $req){
+        $userDetails=User::find($req->id);
+        return view('pages.updateprofile',compact('userDetails'));
+    }
+    public function makeUpdate(Request $req){
+        $userDetail=User::find($req->id);
+        $image = $req->file('image');
+        $image_path = "source/images/profile/" . $userDetail->images_prof;  // Value is not URL but directory file path
+        $this->validate(
+            $req,
+            [
+                "full_name" => "required",
+                "address" => "required",
+            ],
+            [
+                "full_name.required" => "Your name is empty",
+                "address.required" => "Please add your Address"
+            ]
+        ); //Validation
+        $userDetail->full_name = $req->full_name;
+        $userDetail->address = $req->address;
+        if ($image->getClientOriginalName('myFile') != "") {
+                if ($req->hasFile('image')) {
+                    if (File::exists($image_path)) { //Check existing image
+                        File::delete($image_path); //delete image in a file
+                    }
+                    $userDetail->images_prof = $image->getClientOriginalName('myFile'); //Image
+                    $image->move('source/images/profile/', $image->getClientOriginalName('myFile')); //save images at resource/image
+            }
+            $userDetail->images_prof = $image->getClientOriginalName('myFile'); //Image
+        }
+        $userDetail->save();
+        return redirect()->back()->with('reportUpdate', 'Update Success');
+    }
 }
+

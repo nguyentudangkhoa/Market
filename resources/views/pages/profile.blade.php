@@ -24,6 +24,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="source/css/style3.css" rel="stylesheet" type="text/css" media="all" />
 <link rel="stylesheet" href="source/css/font-awesome3.min.css" />
 <link rel="stylesheet" href="source/css/smoothbox3.css" type='text/css' media="all" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <link href="//fonts.googleapis.com/css?family=Pathway+Gothic+One" rel="stylesheet">
 <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
 </head>
@@ -52,11 +55,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		<div id="wrapper" class="w3ls_wrapper w3layouts_wrapper">
 			<div id="steps" style="margin:0 auto;" class="agileits w3_steps">
-				<form id="formElem" name="formElem" action="#" method="post" class="w3_form w3l_form_fancy">
+            <form action="{{route('updateProfile',$user->id)}}" method="get" class="w3_form w3l_form_fancy">
 					<fieldset class="step agileinfo w3ls_fancy_step">
 						<legend>Profile</legend>
 						<div class="abt-agile">
 							<div class="abt-agile-left">
+                                <img src="source/images/profile/{{$user->images_prof}}" class="img-profile" alt="">
 							</div>
 							<div class="abt-agile-right">
 								<h3>{{$user->full_name}}</h3>
@@ -84,9 +88,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<ul class="address-text">
 											<li><b>E-MAIL </b></li>
                                             <li><a href="mailto:example@mail.com">: {{$user->email}}</a></li>
-                                            <li><form action="" method="get" style="margin-top:10px">
-                                                <input type="submit" value="Update" class="btn btn-danger"/>
-                                            </form></li>
+                                            <li><input type="submit" value="Update" class="btn btn-danger"/></li>
 										</ul>
 									</li>
 
@@ -94,85 +96,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 								<div class="clear"></div>
 						</div>
-					</fieldset>
-					<fieldset class="step wthree">
-						<legend>Work</legend>
-						<div class="work-w3agile">
-							<div class="work-w3agile-top">
-								<div class="agileits_w3layouts_work_grid1 w3layouts_work_grid1 hover14 column">
-									<div class="w3_agile_work_effect">
-										<ul>
-											<li>
-												<a href="source/images/c1.jpg" class="sb" title="Quis Nostrud Exercitation Ullamco Laboris Quis Autem Vel Eum Iure Reprehenderit">
-													<figure>
-														<img src="source/images/c1.jpg" alt=" " class="img-responsive" />
-													</figure>
-												</a>
-											</li>
-											<li>
-												<a href="source/images/c2.jpg" class="sb" title="Quis Nostrud Exercitation Ullamco Laboris Quis Autem Vel Eum Iure Reprehenderit">
-													<figure>
-														<img src="source/images/c2.jpg" alt=" " class="img-responsive" />
-													</figure>
-												</a>
-											</li>
-											<li>
-												<a href="source/images/c3.jpg" class="sb" title="Quis Nostrud Exercitation Ullamco Laboris Quis Autem Vel Eum Iure Reprehenderit">
-													<figure>
-														<img src="source/images/c3.jpg" alt=" " class="img-responsive" />
-													</figure>
-												</a>
-											</li>
-											<li>
-												<a href="source/images/c4.jpg" class="sb" title="Quis Nostrud Exercitation Ullamco Laboris Quis Autem Vel Eum Iure Reprehenderit">
-													<figure>
-														<img src="source/images/c4.jpg" alt=" " class="img-responsive" />
-													</figure>
-												</a>
-											</li>
-											<li>
-												<a href="source/images/c5.jpg" class="sb" title="Quis Nostrud Exercitation Ullamco Laboris Quis Autem Vel Eum Iure Reprehenderit">
-													<figure>
-														<img src="source/images/c5.jpg" alt=" " class="img-responsive" />
-													</figure>
-												</a>
-											</li>
-											<li>
-												<a href="source/images/c6.jpg" class="sb" title="Quis Nostrud Exercitation Ullamco Laboris Quis Autem Vel Eum Iure Reprehenderit">
-													<figure>
-														<img src="source/images/c6.jpg" alt=" " class="img-responsive" />
-													</figure>
-												</a>
-											</li>
-												<div class="clear"></div>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-					</fieldset>
-					<fieldset class="step w3_agileits">
-						<legend>Contact</legend>
-							<div class="agilecontactw3ls-grid">
-								<div class="agile-con-left">
-									<form action="#" method="post">
-										<input type="text" name="First Name" placeholder="FIRST NAME" required="">
-										<input type="email" name="Email" placeholder="EMAIL" required="">
-										<textarea name="Message" placeholder="MESSAGE" required=""></textarea>
-										<div class="send-button">
-											<input type="submit" value="SEND">
-										</div>
-									</form>
-								</div>
-								<div class="agile-con-right">
-									<h6>Address :-</h6>
-									<p><span><i class="fa fa-map-marker" aria-hidden="true"></i></span>22 Russell Street, Victoria ,Melbourne AUSTRALIA </p>
-									<p><span><i class="fa fa-envelope" aria-hidden="true"></i></span><a href="#">E: info [at] domain.com</a> </p>
-									<p><span><i class="fa fa-mobile" aria-hidden="true"></i></span>P: +254 2564584 / +542 8245658 </p>
-									<p><span><i class="fa fa-globe" aria-hidden="true"></i></span><a href="#">W: www.w3layouts.com</a></p>
-								</div>
-								<div class="clear"></div>
-							</div>
 					</fieldset>
 				</form>
 			</div>

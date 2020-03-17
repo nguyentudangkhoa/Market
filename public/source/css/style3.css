@@ -221,6 +221,12 @@ p.step_w3layouts {
     width: 37%;
     float: left;
 }
+.img-profile{
+    background-size: cover;
+    min-height: 275px;
+    width: 100%;
+    float: left;
+}
 .work-w3agile-top ul li {
     float: left;
     width: 31.33%;

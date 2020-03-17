@@ -71,3 +71,7 @@ Route::post('updateProduct',['as'=>'updateProduct',
                         'uses'=>'HomeController@UpdateButton']);
 Route::get('profile/{id?}',['as'=>'profile',
                         'uses'=>'HomeController@ProfileDetails']);
+Route::get('updateProfile/{id?}',['as'=>'updateProfile',
+                        'uses'=>'HomeController@UpdateProfile']);
+Route::post('makeUpdate/{id?}',['as'=>'makeUpdate',
+                        'uses'=>'HomeController@makeUpdate']);
