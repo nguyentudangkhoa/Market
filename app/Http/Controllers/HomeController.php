@@ -316,13 +316,15 @@ class HomeController extends Controller
         $user = User::find($req->id);
         return view('pages.profile',compact('user'));
     }
+    //Update profile template
     public function UpdateProfile(Request $req){
         $userDetails=User::find($req->id);
         return view('pages.updateprofile',compact('userDetails'));
     }
+    //Update profile database
     public function makeUpdate(Request $req){
-        $userDetail=User::find($req->id);
-        $image = $req->file('image');
+        $userDetail=User::find($req->id);//Selected user by using id
+        $image = $req->file('image');//get image from view update profile
         $image_path = "source/images/profile/" . $userDetail->images_prof;  // Value is not URL but directory file path
         $this->validate(
             $req,
@@ -348,7 +350,7 @@ class HomeController extends Controller
             }
             $userDetail->images_prof = $image->getClientOriginalName('myFile'); //Image
         }
-        $userDetail->save();
+        $userDetail->save();//update database
         return redirect()->back()->with('reportUpdate', 'Update Success');
     }
 }
