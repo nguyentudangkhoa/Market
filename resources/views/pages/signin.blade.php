@@ -13,6 +13,13 @@
         </p>
     <form action="{{route('signin')}}" method="post">
         <input type="hidden" name="_token" value="{{csrf_token()}}">
+        @if (count($errors)>0)
+        <div class="alert alert-danger">
+            @foreach ($errors->all() as $err)
+                {{$err}}
+            @endforeach
+        </div>
+        @endif
         @if(Session::has('ThongBao'))
         <div class="alert alert-danger">{{Session::get('ThongBao')}}</div>
         @endif

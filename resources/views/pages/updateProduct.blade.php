@@ -7,6 +7,13 @@
             <h4>Update Product</h4>
         <form action="{{route('postFile')}}" method="post" enctype="multipart/form-data" class="creditly-card-form agileinfo_form">
             <input type="hidden" name="_token" value={{ csrf_token() }} >
+            @if (count($errors)>0)
+            <div class="alert alert-danger">
+                @foreach ($errors->all() as $err)
+                    {{$err}}
+                @endforeach
+            </div>
+            @endif
             @if(Session::has('reportUpdate'))
                 <div class="alert alert-success">{{Session::get('reportUpdate')}}</div>
             @endif

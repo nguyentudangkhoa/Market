@@ -5,6 +5,13 @@
         <h4>Update Your Profile</h4>
         <form action="{{Route("makeUpdate",$userDetails->id)}}" method="post" class="creditly-card-form agileinfo_form" enctype="multipart/form-data">
             <input type="hidden" name="_token" value={{ csrf_token() }} >
+            @if (count($errors)>0)
+            <div class="alert alert-danger">
+                @foreach ($errors->all() as $err)
+                    {{$err}}
+                @endforeach
+            </div>
+            @endif
             @if(Session::has('reportUpdate'))
                 <div class="alert alert-success">{{Session::get('reportUpdate')}}</div>
             @endif
