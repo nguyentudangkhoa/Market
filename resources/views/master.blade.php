@@ -65,10 +65,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<span class="fa fa-map-marker" aria-hidden="true"></span> Shop Locator</a>
 					</li>
 					<li>
-						<a href="#" data-toggle="modal" data-target="#myModal1">
-							<span class="fa fa-truck" aria-hidden="true"></span>Track Order</a>
-					</li>
-					<li>
 						<span class="fa fa-phone" aria-hidden="true"></span> 001 234 5678
                     </li>
                     @if (Auth::check())
@@ -80,12 +76,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         @else
                         <li>
                             <a href="{{route('profile',Auth::user()->id)}}" style="color:black">
-                            <span class="fa fa-user-o" aria-hidden="true"></span><br/> {{Auth::user()->full_name}}
+                            <span class="fa fa-user-o" aria-hidden="true"></span>{{Auth::user()->full_name}}</a>
+                        </li>
+                        <li>
+                            <a href="{{route('repassword',Auth::user()->id)}}" style="color:black">
+                                <span class="fa fa-key" aria-hidden="true"></span> Change password </a>
                         </li>
                         @endif
                         <li>
                             <a href="{{route('signout')}}" style="color:black">
-                            <span class="fa fa-unlock-alt" aria-hidden="true"></span> Sign Out </a>
+                            <span class="fa fa-sign-out" aria-hidden="true"></span> Sign Out </a>
                         </li>
                     @else
                         <li>
