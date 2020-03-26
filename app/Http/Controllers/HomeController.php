@@ -275,7 +275,7 @@ class HomeController extends Controller
             File::delete($image_path); //delete image in a file
         }
         $product->delete(); // delete image in database
-        return redirect()->back()->with('Report', 'Delete successfull');
+        return redirect()->back()->with('Report', 'Delete '.$product->name.' successfull');
     }
     //Template update
     public function UpdateProduct(Request $req)
@@ -305,7 +305,7 @@ class HomeController extends Controller
                         $image->move('source/images', $image->getClientOriginalName('myFile')); //save images at resource/image
                 }
                 $product->save(); //Save product to database
-                return redirect()->back()->with('reportUpdate', 'Update Successfull');
+                return redirect()->back()->with('reportUpdate', 'Update '.$product->name.'Successfull');
             } else {
                 return redirect()->back()->with('reportUpdate', 'Can not find the product');
             }
@@ -353,5 +353,68 @@ class HomeController extends Controller
         $userDetail->save();//update database
         return redirect()->back()->with('reportUpdate', 'Update Success');
     }
-}
+    //Change password
+    public function ChangePassword(Request $req){
+        $changePass = User::find($req->id);
+        return view('pages.changePassword',compact('changePass'));
+    }
+    public function MakeChangePass(Request $req){
+        $changePass = User::find($req->id);
+        $this->validate(
+            $req,
+            [
+                "password" => "required",
+                "newPassword" => "required|min:6",
+                "rePassword" => "required|min:6|same:newPassword"
+            ],
+            [
+                "password.required" => "Password can not empty",
+                "newPassword.required" => "Please enter your new password",
+                "newPassword.min" => "New password must be above 6 character",
+                "rePassword.required" => "Please enter your new password again",
+                "rePassword.min" => "New password must be above 6 character",
+                "rePassword.same " => "New password must be same your new password"
+            ]
+        ); //Validation
+        if(Hash::check($req->password,Auth::user()->password)){
+            $changePass->password = Hash::make($req->newPassword);
+            $changePass->save();
+            return redirect()->back()->with("Report","Change password successfully");
+        }
+        else{
+            return redirect()->back()->with("Report","The password you enter is not correct with the password");
+        }
+    }
+    //Find password
+    public function FindPassWord(){
+        return view('pages.findPassWord');
+    }
+    //Find password button
+    public function FindPass(Request $req){
+        $this->validate(
+            $req,
+            [
+                "email" => "required",
+                "newPassword" => "required|min:6",
+                "rePassword" => "required|min:6|same:newPassword"
+            ],
+            [
+                "email.required" => "Password can not empty",
+                "newPassword.required" => "Please enter your new password",
+                "newPassword.min" => "New password must be above 6 character",
+                "rePassword.required" => "Please enter your new password again",
+                "rePassword.min" => "New password must be above 6 character",
+                "rePassword.same " => "New password must be same your new password"
+            ]
+        ); //Validation
+        $user = User::where('email',$req->email)->first();
+        if($user->email == $req->email){
+            $user->password = Hash::make($req->newPassword);
+            $user->save();
+            return redirect()->back()->with("Report","Change password successfully");
+        }else{
+            return redirect()->back()->with("Report","The email do not exist");
+        }
 
+    }
+}

@@ -13,18 +13,23 @@
 
 use Illuminate\Support\Facades\Route;
 
+//Template Index
 Route::get('/', ['as'=>'trangchu',
                  'uses'=>'HomeController@Index']);
 Route::get('index',['as'=>'trangchu',
                     'uses'=>'HomeController@Index']);
+
 Route::get('single/{id?}',['as'=>'single',
                      'uses'=>'HomeController@Single']);//phải thêm ? đằng sau param truyền vào
+//Product
 Route::get('product',['as'=>'product',
                       'uses'=>'HomeController@Product']);
 Route::get('product2',['as'=>'product2',
                       'uses'=>'HomeController@Product2']);
+//Pay the bill
 Route::get('payment',['as'=>'payment',
                       'uses'=>'HomeController@Payment']);
+//info
 Route::get('faqs',['as'=>'faqs',
                       'uses'=>'HomeController@Faqs']);
 Route::get('about',['as'=>'about',
@@ -37,26 +42,47 @@ Route::get('single2',['as'=>'single2',
                       'uses'=>'HomeController@Single2']);
 Route::get('contact',['as'=>'contact',
                       'uses'=>'HomeController@Contact']);
+//Shopping cart
 Route::get('add-to-cart/{id?}',['as'=>'add-to-cart',
                       'uses'=>'HomeController@AddToCart']);
 Route::get('delete/{id?}',['as'=>'delete',
                       'uses'=>'HomeController@DeleteCart']);
-Route::get('signup',['as'=>'signup',
-                      'uses'=>'HomeController@SignUp']);
-Route::get('signin',['as'=>'signin',
-                      'uses'=>'HomeController@SignIn']);
+//
+
+
 Route::get('checkout.html',['as'=>'checkout.html',
                       'uses'=>'HomeController@Checkout']);
 Route::post('checkout',['as'=>'checkout',
                       'uses'=>'HomeController@postCheckout']);
+//user
+Route::get('signup',['as'=>'signup',
+                      'uses'=>'HomeController@SignUp']);
+Route::get('signin',['as'=>'signin',
+                      'uses'=>'HomeController@SignIn']);
 Route::post('signup',['as'=>'signup',
                       'uses'=>'HomeController@postSignUp']);
 Route::post('signin',['as'=>'signin',
                       'uses'=>'HomeController@postSignIn']);
 Route::get('signout',['as'=>'signout',
                       'uses'=>'HomeController@postSignOut']);
+Route::get('profile/{id?}',['as'=>'profile',
+                        'uses'=>'HomeController@ProfileDetails']);
+Route::get('updateProfile/{id?}',['as'=>'updateProfile',
+                        'uses'=>'HomeController@UpdateProfile']);
+Route::post('makeUpdate/{id?}',['as'=>'makeUpdate',
+                        'uses'=>'HomeController@makeUpdate']);
+Route::get('repassword/{id?}',['as'=>'repassword',
+                        'uses'=>'HomeController@ChangePassword']);
+Route::post('changePassword/{id?}',['as'=>'changePassword',
+                                    'uses'=>'HomeController@MakeChangePass']);
+Route::get('Forgot-passsword',['as'=>'Forgot-password',
+                                    'uses'=>'HomeController@FindPassWord']);
+Route::post('FindPass',['as'=>'FindPass',
+                                    'uses'=>'HomeController@FindPass']);
+//Search
 Route::get('search',['as'=>'search',
                       'uses'=>'HomeController@FindProduct']);
+//admin
 Route::get('admin',['as'=>'admin',
                       'uses'=>'HomeController@Admin']);
 Route::post('deleteitem/{id?}',['as'=>'deleteitem',
@@ -69,9 +95,5 @@ Route::get('update/{id?}',['as'=>'update',
                         'uses'=>'HomeController@UpdateProduct']);
 Route::post('updateProduct',['as'=>'updateProduct',
                         'uses'=>'HomeController@UpdateButton']);
-Route::get('profile/{id?}',['as'=>'profile',
-                        'uses'=>'HomeController@ProfileDetails']);
-Route::get('updateProfile/{id?}',['as'=>'updateProfile',
-                        'uses'=>'HomeController@UpdateProfile']);
-Route::post('makeUpdate/{id?}',['as'=>'makeUpdate',
-                        'uses'=>'HomeController@makeUpdate']);
+
+
