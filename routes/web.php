@@ -18,6 +18,7 @@ Route::get('/', ['as'=>'trangchu',
                  'uses'=>'HomeController@Index']);
 Route::get('index',['as'=>'trangchu',
                     'uses'=>'HomeController@Index']);
+//product detail
 
 Route::get('single/{id?}',['as'=>'single',
                      'uses'=>'HomeController@Single']);//phải thêm ? đằng sau param truyền vào
@@ -47,9 +48,6 @@ Route::get('add-to-cart/{id?}',['as'=>'add-to-cart',
                       'uses'=>'HomeController@AddToCart']);
 Route::get('delete/{id?}',['as'=>'delete',
                       'uses'=>'HomeController@DeleteCart']);
-//
-
-
 Route::get('checkout.html',['as'=>'checkout.html',
                       'uses'=>'HomeController@Checkout']);
 Route::post('checkout',['as'=>'checkout',
