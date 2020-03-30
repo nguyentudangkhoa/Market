@@ -358,6 +358,7 @@ class HomeController extends Controller
         $changePass = User::find($req->id);
         return view('pages.changePassword',compact('changePass'));
     }
+    //Changing Pass
     public function MakeChangePass(Request $req){
         $changePass = User::find($req->id);
         $this->validate(
@@ -408,13 +409,16 @@ class HomeController extends Controller
             ]
         ); //Validation
         $user = User::where('email',$req->email)->first();
-        if($user->email == $req->email){
-            $user->password = Hash::make($req->newPassword);
-            $user->save();
-            return redirect()->back()->with("Report","Change password successfully");
+        if($user->authority == 1){
+            return redirect()->back()->with("Report","Access denied");
         }else{
-            return redirect()->back()->with("Report","The email do not exist");
+            if($user->email == $req->email){
+                $user->password = Hash::make($req->newPassword);
+                $user->save();
+                return redirect()->back()->with("Report","Change password of".$user->email." successfully");
+            }else{
+                return redirect()->back()->with("Report","The email do not exist");
+            }
         }
-
     }
 }
