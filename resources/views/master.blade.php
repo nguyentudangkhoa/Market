@@ -23,7 +23,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		function hideURLbar() {
 			window.scrollTo(0, 1);
 		}
-	</script>
+    </script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<!--//tags -->
 	<link href="source/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 	<link href="source/css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -103,12 +107,36 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<!-- search -->
 				<div class="agileits_search">
                     <form action="{{route('search')}}" method="get">
-						<input name="input" type="search" placeholder="How can we help you today?" required="">
+                        <input name="input" id="input_search" type="search" placeholder="How can we help you today?" required="">
+                        <div id="foodList">
+                        </div>
+                        {{ csrf_field() }}
 						<button type="submit" class="btn btn-default" aria-label="Left Align">
 							<span class="fa fa-search" aria-hidden="true"> </span>
 						</button>
 					</form>
-				</div>
+                </div>
+                <script>
+                    $(document).ready(function(){
+
+                     $('#input_search').keyup(function(){
+                            var query = $(this).val();
+                            if(query != '')
+                            {
+                             var _token = $('input[name="_token"]').val();
+                             $.ajax({
+                              url:"{{ route('searchList') }}",
+                              method:"POST",
+                              data:{query:query, _token:_token},
+                              success:function(data){
+                                $('#foodList').fadeIn();
+                                $('#foodList').html(data);
+                              }
+                             });
+                            }
+                        });
+                    });
+                    </script>
 				<!-- //search -->
 				<!-- cart details -->
 				<div class="top_nav_right">
