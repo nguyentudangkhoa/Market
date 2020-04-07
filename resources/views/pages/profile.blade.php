@@ -68,12 +68,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<ul class="address">
 									<li>
 										<ul class="address-text">
-											<li><b>D.O.B </b></li>
-											<li>: not done yet</li>
-										</ul>
-									</li>
-									<li>
-										<ul class="address-text">
 											<li><b>PHONE </b></li>
 											<li>: {{$user->phone}}</li>
 										</ul>

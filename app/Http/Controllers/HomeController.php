@@ -421,4 +421,23 @@ class HomeController extends Controller
             }
         }
     }
+    //Search ajax
+    function fetch(Request $request)
+    {
+     if($request->get('query'))
+     {
+      $query = $request->get('query');
+      $data = Product::where('name', 'LIKE', "%{$query}%")
+        ->get();
+      $output = '<ul class="dropdown-menu ajax-list" style="display:block; position:absolute ">';
+      foreach($data as $row)
+      {
+       $output .= '
+       <li class="item"><a href="single/'.$row->id.'"><img src="source/images/'.$row->image.'" style="height:30px; width:30px;"> '.$row->name.'</a></li><br>
+       ';
+      }
+      $output .= '</ul>';
+      echo $output;
+     }
+    }
 }
