@@ -422,22 +422,48 @@ class HomeController extends Controller
         }
     }
     //Search ajax
-    function fetch(Request $request)
-    {
-     if($request->get('query'))
-     {
-      $query = $request->get('query');
-      $data = Product::where('name', 'LIKE', "%{$query}%")
-        ->get();
-      $output = '<ul class="dropdown-menu ajax-list" style="display:block; position:absolute ">';
-      foreach($data as $row)
-      {
-       $output .= '
-       <li class="item"><a href="single/'.$row->id.'"><img src="source/images/'.$row->image.'" style="height:30px; width:30px;"> '.$row->name.'</a></li><br>
-       ';
-      }
-      $output .= '</ul>';
-      echo $output;
-     }
+    function fetch(Request $request){
+        if($request->get('query'))
+        {
+        $query = $request->get('query');
+        $data = Product::where('name', 'LIKE', "%{$query}%")
+            ->get();
+        $output = '<ul class="dropdown-menu ajax-list" style="display:block; position:absolute ">';
+        foreach($data as $row)
+        {
+        $output .= '
+        <li class="item"><a href="single/'.$row->id.'"><img src="source/images/'.$row->image.'" style="height:30px; width:30px;"> '.$row->name.'</a></li><br>
+        ';
+        }
+        $output .= '</ul>';
+        echo $output;
+        }
+    }
+    //ajax validate sign up
+    public function valSignUp(Request $req){
+        if($req->get('email')){
+            $query = $req->get('email');
+            $user = User::where('email',$query)->first();
+            if(!filter_var($query, FILTER_VALIDATE_EMAIL)) {
+                echo "email is invalid!";
+            }else{
+                if($user){
+                    echo "account is exist or you dont have permission to create the account";
+                }
+                else{
+                    echo "you can use this email";
+                }
+            }
+        }
+        if($req->get('re_password')){
+            $re_password = $req->get('re_password');
+            $password=$req->get('password');
+            if($re_password != $password){
+                echo "Repassword do not match with the password you entered before";
+            }
+            else{
+                echo "";
+            }
+        }
     }
 }
