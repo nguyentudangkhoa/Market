@@ -167,3 +167,7 @@ Route::post('searchList', [
     'as' => 'searchList',
     'uses' => 'HomeController@fetch'
 ]);
+Route::post('validateSignUp', [
+    'as' => 'validateSignUp',
+    'uses' => 'HomeController@valSignUp'
+]);

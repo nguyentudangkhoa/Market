@@ -25,9 +25,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		}
     </script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> --}}
 	<!--//tags -->
 	<link href="source/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 	<link href="source/css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -133,7 +133,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 $('#foodList').html(data);
                               }
                              });
-                            }
+                            }else{
+								$('#foodList').html("");
+							}
                         });
                     });
                     </script>
@@ -653,8 +655,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</a>
 	</div>
 	<!-- //banner -->
+    <!--start content-->
 
-	@yield('content')
+    @yield('content')
+
+    <!--end content-->
 	@include('hf.footer')
 	<!-- copyright -->
 	<div class="copy-right">
