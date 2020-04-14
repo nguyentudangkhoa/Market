@@ -6,7 +6,7 @@
     <h4>Wellcome Admin to
         <span>Products Page</span>
     </h4>
-    <div class="table-responsive" style="margin-left:200px;margin-right:200px;margin-bottom:50px">
+    <div class="table-responsive" style="margin-left:0%;margin-bottom:50px">
         <table class="timetable_sub">
             <thead>
                 <tr>
