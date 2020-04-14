@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 17, 2019 at 10:27 AM
--- Server version: 10.3.16-MariaDB
--- PHP Version: 7.3.7
+-- Generation Time: Apr 14, 2020 at 05:23 AM
+-- Server version: 10.4.10-MariaDB
+-- PHP Version: 7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -160,23 +160,15 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `id_type`, `description`, `unit_price`, `promotion_price`, `image`, `unit`, `new`, `created_at`, `updated_at`) VALUES
-(1, 'Vim Dishwash Gel', 5, 'Bánh crepe sầu riêng nhà làm', 150000, 120000, 'a1.jpg', 'hộp', 1, '2016-10-26 03:00:16', '2016-10-24 22:11:00'),
-(3, 'Harpic Cleaner', 5, '', 150000, 120000, 'a2.jpg', 'hộp', 0, '2016-10-26 03:00:16', '2016-10-24 22:11:00'),
-(4, 'Comfort After Wash', 5, '', 160000, 0, 'a3.jpg', 'hộp', 0, '2016-10-26 03:00:16', '2016-10-24 22:11:00'),
-(5, 'Odonil Blocks (3+1)', 5, '', 160000, 0, 'a4.jpg', 'hộp', 0, '2016-10-26 03:00:16', '2016-10-24 22:11:00'),
 (6, 'Surf Excel Detergent', 5, '', 200000, 180000, 'a5.jpg', 'hộp', 0, '2016-10-26 03:00:16', '2016-10-24 22:11:00'),
-(8, 'Sunsilk Shampoo', 5, '', 160000, 150000, 'a6.jpg', 'hộp', 0, '2016-10-26 03:00:16', '2016-10-24 22:11:00'),
 (9, 'Gala Leader Floor Mop', 5, '', 160000, 150000, 'a7.jpg', 'hộp', 0, '2016-10-26 03:00:16', '2016-10-24 22:11:00'),
-(11, 'Yippee Noodles', 3, '', 250000, 0, 'mk7.jpg', 'cái', 0, '2016-10-12 02:00:00', '2016-10-27 02:24:00'),
 (12, 'Wheat Pasta', 3, '', 200000, 180000, 'mk8.jpg', 'cái', 0, '2016-10-12 02:00:00', '2016-10-27 02:24:00'),
 (15, 'Chinese Noodles', 3, '', 350000, 320000, 'mk9.jpg', 'cái', 1, '2016-10-12 02:00:00', '2016-10-27 02:24:00'),
 (18, 'Freedom Oil', 2, '', 180000, 0, 'mk4.jpg', 'hộp', 0, '2016-10-13 02:20:00', '2016-10-19 03:20:00'),
-(19, 'Saffola Gold', 2, '', 150000, 0, 'mk5.jpg', 'hộp', 1, '2016-10-13 02:20:00', '2016-10-19 03:20:00'),
 (20, 'Fortune Oil', 2, '', 150000, 0, 'mk6.jpg', 'hộp', 0, '2016-10-13 02:20:00', '2016-10-19 03:20:00'),
 (22, 'Almonds', 1, '', 160000, 150000, 'm1.jpg', 'hộp', 1, '2016-10-13 02:20:00', '2016-10-19 03:20:00'),
 (23, 'Cashew Nuts', 1, '', 180000, 0, 'm2.jpg', 'hộp', 0, '2016-10-13 02:20:00', '2016-10-19 03:20:00'),
 (24, 'Pista...', 1, '', 180000, 0, 'm3.jpg', 'hộp', 0, '2016-10-13 02:20:00', '2016-10-19 03:20:00'),
-(30, 'Zeeba Basmati Rice', 4, '', 380000, 350000, 'k1.jpg', 'cái', 1, '2016-10-13 02:20:00', '2016-10-19 03:20:00'),
 (31, 'Maiyas Gulab Jamun', 4, '', 380000, 350000, 'k2.jpg', 'cái', 0, '2016-10-13 02:20:00', '2016-10-19 03:20:00'),
 (32, 'Lipton Green Tea', 4, '', 380000, 350000, 'k3.jpg', 'cái', 0, '2016-10-13 02:20:00', '2016-10-19 03:20:00'),
 (33, 'Organicana Red Chilli', 4, '', 280000, 250000, 'k4.jpg', 'cái', 1, '2016-10-13 02:20:00', '2016-10-19 03:20:00'),
@@ -192,7 +184,8 @@ INSERT INTO `products` (`id`, `name`, `id_type`, `description`, `unit_price`, `p
 (48, 'Spotzero Zero Dust', 5, 'Cá Ngừ, sốt Mayonnaise,sốt càchua, hành tây, pho mai Mozzarella', 140000, 0, 'a9.jpg', 'cái', 0, '2016-10-13 02:20:00', '2016-10-19 03:20:00'),
 (49, 'All Out 480 Hours', 5, '', 120000, 100000, 'a10.jpg', 'cái', 0, '2016-10-13 02:20:00', '2016-10-19 03:20:00'),
 (50, 'Wall Hanging', 5, '', 120000, 100000, 'a11.jpg', 'cái', 0, '2016-10-13 02:20:00', '2016-10-19 03:20:00'),
-(69, 'Colin Regular Refill', 5, NULL, 200000, 160000, 'a12.jpg', 'bộ', 1, '2019-11-12 10:34:00', '2019-11-12 10:34:00');
+(69, 'Colin Regular Refill', 5, NULL, 200000, 160000, 'a12.jpg', 'bộ', 1, '2019-11-12 10:34:00', '2019-11-12 10:34:00'),
+(70, 'Vim', 5, 'none', 130000, 0, 'a1.jpg', NULL, 0, '2019-12-26 19:46:29', '2019-12-26 19:46:29');
 
 -- --------------------------------------------------------
 
@@ -240,9 +233,7 @@ INSERT INTO `type_products` (`id`, `name`, `description`, `image`, `created_at`,
 (2, 'Oils', 'Bánh ngọt là một loại thức ăn thường dưới hình thức món bánh dạng bánh mì từ bột nhào, được nướng lên dùng để tráng miệng. Bánh ngọt có nhiều loại, có thể phân loại dựa theo nguyên liệu và kỹ thuật chế biến như bánh ngọt làm từ lúa mì, bơ, bánh ngọt dạng bọt biển. Bánh ngọt có thể phục vụ những mục đính đặc biệt như bánh cưới, bánh sinh nhật, bánh Giáng sinh, bánh Halloween..', '20131108144733.jpg', '2016-10-12 02:16:15', '2016-10-13 01:38:35'),
 (3, 'Pasta & Noodles', 'Bánh trái cây, hay còn gọi là bánh hoa quả, là một món ăn chơi, không riêng gì của Huế nhưng khi \"lạc\" vào mảnh đất Cố đô, món bánh này dường như cũng mang chút tinh tế, cầu kỳ và đặc biệt. Lấy cảm hứng từ những loại trái cây trong vườn, qua bàn tay khéo léo của người phụ nữ Huế, món bánh trái cây ra đời - ngọt thơm, dịu nhẹ làm đẹp lòng biết bao người thưởng thức.', 'banhtraicay.jpg', '2016-10-18 00:33:33', '2016-10-15 07:25:27'),
 (4, 'Kitchen Products', 'Với người Việt Nam thì bánh ngọt nói chung đều hay được quy về bánh bông lan – một loại tráng miệng bông xốp, ăn không hoặc được phủ kem lên thành bánh kem. Tuy nhiên, cốt bánh kem thực ra có rất nhiều loại với hương vị, kết cấu và phương thức làm khác nhau chứ không chỉ đơn giản là “bánh bông lan” chung chung đâu nhé!', 'banhkem.jpg', '2016-10-26 03:29:19', '2016-10-26 02:22:22'),
-(5, 'Household Products', 'Crepe là một món bánh nổi tiếng của Pháp, nhưng từ khi du nhập vào Việt Nam món bánh đẹp mắt, ngon miệng này đã làm cho biết bao bạn trẻ phải “xiêu lòng”', 'crepe.jpg', '2016-10-28 04:00:00', '2016-10-27 04:00:23'),
-(6, 'Bánh Pizza', 'Pizza đã không chỉ còn là một món ăn được ưa chuộng khắp thế giới mà còn được những nhà cầm quyền EU chứng nhận là một phần di sản văn hóa ẩm thực châu Âu. Và để được chứng nhận là một nhà sản xuất pizza không hề đơn giản. Người ta phải qua đủ mọi các bước xét duyệt của chính phủ Ý và liên minh châu Âu nữa… tất cả là để đảm bảo danh tiếng cho món ăn này.', 'pizza.jpg', '2016-10-25 17:19:00', NULL),
-(7, 'Bánh su kem', 'Bánh su kem là món bánh ngọt ở dạng kem được làm từ các nguyên liệu như bột mì, trứng, sữa, bơ.... đánh đều tạo thành một hỗn hợp và sau đó bằng thao tác ép và phun qua một cái túi để định hình thành những bánh nhỏ và cuối cùng được nướng chín. Bánh su kem có thể thêm thành phần Sô cô la để tăng vị hấp dẫn. Bánh có xuất xứ từ nước Pháp.', 'sukemdau.jpg', '2016-10-25 17:19:00', NULL);
+(5, 'Household Products', 'Crepe là một món bánh nổi tiếng của Pháp, nhưng từ khi du nhập vào Việt Nam món bánh đẹp mắt, ngon miệng này đã làm cho biết bao bạn trẻ phải “xiêu lòng”', 'crepe.jpg', '2016-10-28 04:00:00', '2016-10-27 04:00:23');
 
 -- --------------------------------------------------------
 
@@ -259,20 +250,25 @@ CREATE TABLE `users` (
   `address` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `authority` int(11) DEFAULT 0,
+  `images_prof` varchar(300) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `full_name`, `email`, `password`, `phone`, `address`, `remember_token`, `created_at`, `updated_at`) VALUES
-(6, 'Hương Hương', 'huonghuong08.php@gmail.com', '$2y$10$rGY4KT6ZSMmLnxIbmTXrsu2xdgRxm8x0UTwCyYCAzrJ320kYheSRq', '23456789', 'Hoàng Diệu 2', NULL, '2017-03-23 07:17:33', '2017-03-23 07:17:33'),
-(7, 'LeThanhNhan', 'LeThanhNhan@gmail.com', '$2y$10$gtZbqr1ckKM/1qfLh8smHOMg7WoAuTJbZsc0s1Gzyt0VaoTM88PvS', NULL, NULL, NULL, '2019-12-14 00:45:53', '2019-12-14 00:45:53'),
-(8, 'Nguyen Duy Truong', 'TruongNguLol@gmail.com', '$2y$10$/b9paGs9Q9IuOIQOlxieYOuu6HiWUCfxxIfjq6QqLFZt/YmQoxEi.', NULL, NULL, NULL, '2019-12-14 01:06:16', '2019-12-14 01:06:16'),
-(9, 'Nguyễn Từ Đăng Khoa', 'nguyentudangkhoa@yahool.com', '$2y$10$GoiVTRJ6keWFfwMe8QDG4.mqX4mrNtjURz7Kl6tW/ea3rl6H6.Pc6', NULL, NULL, NULL, '2019-12-14 23:47:29', '2019-12-14 23:47:29'),
-(10, 'Lê Hô Nibba', 'Nibba@gmail.com', '$2y$10$9xhFO852gSDEJYEsA/ovne.D9VMAmDHYLVnreeaIUhqlta/86fKSu', NULL, NULL, NULL, '2019-12-15 10:04:41', '2019-12-15 10:04:41'),
-(11, 'Nguyễn Từ Đăng Khoa', 'khoakute1997@gmail.com', '$2y$10$LkX2s.UZhs2/DiCDiBGi7..8fbCa8uZZrY1T0wBWQ7D5XGXD8yeuO', NULL, NULL, NULL, '2019-12-16 07:07:59', '2019-12-16 07:07:59');
+INSERT INTO `users` (`id`, `full_name`, `email`, `password`, `phone`, `address`, `remember_token`, `created_at`, `updated_at`, `authority`, `images_prof`) VALUES
+(6, 'Hương Hương', 'huonghuong08.php@gmail.com', '$2y$10$rGY4KT6ZSMmLnxIbmTXrsu2xdgRxm8x0UTwCyYCAzrJ320kYheSRq', '23456789', 'Hoàng Diệu 2', NULL, '2017-03-23 07:17:33', '2017-03-23 07:17:33', 0, NULL),
+(7, 'LeThanhNhan', 'LeThanhNhan@gmail.com', '$2y$10$gtZbqr1ckKM/1qfLh8smHOMg7WoAuTJbZsc0s1Gzyt0VaoTM88PvS', NULL, NULL, NULL, '2019-12-14 00:45:53', '2019-12-14 00:45:53', 0, NULL),
+(8, 'Nguyen Duy Truong', 'TruongNguLol@gmail.com', '$2y$10$/b9paGs9Q9IuOIQOlxieYOuu6HiWUCfxxIfjq6QqLFZt/YmQoxEi.', NULL, NULL, NULL, '2019-12-14 01:06:16', '2019-12-14 01:06:16', 0, NULL),
+(10, 'Lê Hô Nibba', 'Nibba@gmail.com', '$2y$10$9xhFO852gSDEJYEsA/ovne.D9VMAmDHYLVnreeaIUhqlta/86fKSu', NULL, NULL, NULL, '2019-12-15 10:04:41', '2019-12-15 10:04:41', 0, NULL),
+(11, 'Khoa Nguyễn', 'khoakute1997@gmail.com', '$2y$10$zptSenHFxO5lpOEcVlKIB.wQCQ9RL4gnvVkPyUfH93UJ7/VzyQaTC', '0389643555', 'Phan Thiết', NULL, '2019-12-16 07:07:59', '2020-03-30 20:46:49', 0, '68817350_2176078199184468_8622629880216944640_o.jpg'),
+(12, 'admin', 'admin@gmail.com', '$2y$10$rDLe3iHhpdhI5udzDeZuhuk6K0amG9E3DVvurhQG/Nua0zeqXUaci', NULL, NULL, NULL, '2019-12-22 05:02:12', '2019-12-22 05:02:12', 1, NULL),
+(13, 'Khoa Nguyen', 'khoanguyen@gmail.com', '$2y$10$5ebG6Fu00RDfl8I/8yVgMetGu4L8er.BoFBpeNVERW0JlHgxwULdm', '0389643555', 'Phan Thiet', NULL, '2019-12-26 19:37:30', '2020-03-16 19:49:02', 0, '84287822_2499644613494490_4522580917507588096_o.jpg'),
+(14, 'Khoa', 'animation@gmail.com', '$2y$10$fHEINsxeKVx8smQt7izD8eXD.BOB9lW6a8jlzH52XpUc.zj1I9QYG', NULL, 'Tp. Hồ Chí Minh', NULL, '2020-03-15 21:41:03', '2020-03-15 21:42:37', 0, '84287822_2499644613494490_4522580917507588096_o.jpg'),
+(15, 'Nguyễn Từ Đăng Khoa', 'nguyentudangkhoa@gmail.com', '$2y$10$oRwIrENO1nUwK3PVCIQpqO3vZV5U101QeVxe05ptz6eK1BBcqyZmq', '0389643555', 'Phan Thiet', NULL, '2020-04-11 01:05:42', '2020-04-11 06:21:18', 0, '68817350_2176078199184468_8622629880216944640_o.jpg');
 
 --
 -- Indexes for dumped tables
@@ -356,7 +352,7 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `slide`
@@ -374,7 +370,7 @@ ALTER TABLE `type_products`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables
