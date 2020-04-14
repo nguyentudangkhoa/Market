@@ -2,7 +2,7 @@
 @section('content')
 @if(Auth::check())
 @if(Auth::user()->email == $changePass->email)
-<div class="modal-body modal-body-sub_agile" style="margin-left:500px;margin-right:500px;text-align:center">
+<div class="modal-body modal-body-sub_agile" style="margin-left:15%;margin-right:15%;text-align:center">
     <div class="main-mailposi">
         <span class="fa fa-envelope-o" aria-hidden="true"></span>
     </div>
@@ -30,15 +30,41 @@
             </div>
             <div class="styled-input">
                 <input type="password" placeholder="Password" name="password" id="password" required="">
+                <div id="password-exist" style="color:red"></div>
             </div>
             <div class="styled-input">
                 <input type="password" placeholder="New password" name="newPassword" id="newPassword" required="">
             </div>
             <div class="styled-input">
                 <input type="password" placeholder="Enter your new password again" name="rePassword" id="rePassword" required="">
+                <div id="validate_password" style="color:red"></div>
             </div>
+            {{ csrf_field() }}
             <input type="submit" value="Change password">
         </form>
+        <script>
+            $(document).ready(function(){
+                $('#rePassword').keyup(function(){
+                    var re_password = $(this).val();
+                    var password = $('#newPassword').val();
+                    if(re_password != '')
+                    {
+                     var _token = $('input[name="_token"]').val();
+                     $.ajax({
+                      url:"{{ route('validateSignUp') }}",
+                      method:"POST",
+                      data:{re_password:re_password,password:password, _token:_token},
+                      success:function(data){
+                        $('#validate_password').fadeIn();
+                        $('#validate_password').html(data);
+                      }
+                     });
+                    }else{
+                        $('#validate_password').html("");
+                    }
+                });
+            });
+        </script>
         <div class="clearfix"></div>
     </div>
     <div class="clearfix"></div>

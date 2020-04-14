@@ -1,6 +1,6 @@
 @extends('master')
 @section('content')
-<div class="modal-body modal-body-sub_agile" style="margin-left:500px;margin-right:500px;text-align:center">
+<div class="modal-body modal-body-sub_agile" style="margin-left:15%;margin-right:15%;text-align:center">
     <div class="main-mailposi">
         <span class="fa fa-envelope-o" aria-hidden="true"></span>
     </div>
@@ -29,13 +29,37 @@
         <div class="alert alert-danger">{{Session::get('ThongBao')}}</div>
         @endif
             <div class="styled-input agile-styled-input-top" >
-                <input type="text" placeholder="Email" name="email" id="email" required="">
+                <input type="text" placeholder="Email" name="email" id="email" required="" >
+                <div id="validate_email" style="color:red"></div>
             </div>
             <div class="styled-input">
-                <input type="password" placeholder="Password" name="password" id="password" required="">
+                <input type="password" placeholder="Password" name="password" id="password" required="" >
             </div>
+            {{ csrf_field() }}
             <input type="submit" value="Sign In">
         </form>
+        <script>
+            $(document).ready(function(){
+                $('#email').keyup(function(){
+                    var checkEmail = $(this).val();
+                    if(checkEmail != '')
+                    {
+                     var _token = $('input[name="_token"]').val();
+                     $.ajax({
+                      url:"{{ route('validateSignUp') }}",
+                      method:"POST",
+                      data:{checkEmail:checkEmail, _token:_token},
+                      success:function(data){
+                        $('#validate_email').fadeIn();
+                        $('#validate_email').html(data);
+                      }
+                     });
+                    }else{
+                        $('#validate_email').html("");
+                    }
+                });
+            });
+        </script>
         <div class="clearfix"></div>
     </div>
     <div class="clearfix"></div>
