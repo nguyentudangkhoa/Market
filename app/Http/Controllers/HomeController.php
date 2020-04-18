@@ -251,7 +251,7 @@ class HomeController extends Controller
         $bill->id_customer = $customer->id;
         $bill->date_order = date('Y-m-d');
         $bill->total = $cart->totalPrice;
-        $bill->payment = $req->payment_method;
+        $bill->payment = "COD";
         $bill->note = $req->notes;
         $bill->save(); //Add item to bill table
 
@@ -474,5 +474,15 @@ class HomeController extends Controller
                 echo "";
             }
         }
+    }
+    //bill
+    public function Bill(){
+        $data = Bill::orderBy('created_at', 'desc')->paginate(9);
+        return view('pages.bill',compact('data'));
+    }
+    public function DeleteBill(Request $req){
+        $data = Bill::find($req->id);
+        $data->delete();
+        return redirect()->back()->with("Report","Delete bill successfully");
     }
 }

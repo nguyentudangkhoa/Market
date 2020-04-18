@@ -158,19 +158,30 @@
                                     </div>
                                 </ul>
                             </li>
-                            <li class="">
-                                <a class="nav-stylehead" href={{route('faqs')}}>Faqs</a>
-                            </li>
                             @if (Auth::check())
                                 @if(Auth::user()->authority == 1)
-                                <li class="" style="background-color:#E33539">
-                                    <a class="nav-stylehead"  href="{{route('addproduct')}}">Add a product</a>
-                                </li>
+                                    <li class="" style="background-color:#E33539">
+                                        <a class="nav-stylehead"  href="{{route('addproduct')}}">Add a product</a>
+                                    </li>
+                                    <li class="" style="background-color:#E33539">
+                                        <a class="nav-stylehead"  href="{{route('Bill')}}">Bill Manager</a>
+                                    </li>
                                 @else
+                                    <li class="">
+                                        <a class="nav-stylehead" href={{route('faqs')}}>Faqs</a>
+                                    </li>
+                                    <li class="">
+                                        <a class="nav-stylehead" href={{route('contact')}}>Contact</a>
+                                    </li>
+                                @endif
+                            @else
+                                <li class="">
+                                    <a class="nav-stylehead" href={{route('faqs')}}>Faqs</a>
+                                </li>
                                 <li class="">
                                     <a class="nav-stylehead" href={{route('contact')}}>Contact</a>
                                 </li>
-                                @endif
+
                             @endif
 
                         </ul>

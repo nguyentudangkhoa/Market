@@ -171,3 +171,11 @@ Route::post('validateSignUp', [
     'as' => 'validateSignUp',
     'uses' => 'HomeController@valSignUp'
 ]);
+Route::get('Bill', [
+    'as' => 'Bill',
+    'uses' => 'HomeController@Bill'
+]);
+Route::get('DeleteBill/{id?}', [
+    'as' => 'DeleteBill',
+    'uses' => 'HomeController@DeleteBill'
+]);
