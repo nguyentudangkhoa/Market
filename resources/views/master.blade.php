@@ -53,7 +53,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<!-- header-bot-->
 			<div class="col-md-4 logo_agile">
 				<h1>
-					<a href="{{route('trangchu')}}">
+					<a href="{{route('index')}}">
 						<span>G</span>rocery
 						<span>S</span>hoppy
 						<img src="source/images/logo2.png" alt=" ">
