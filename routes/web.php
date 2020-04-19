@@ -19,7 +19,7 @@ Route::get('/', [
     'uses' => 'HomeController@Index'
 ]);
 Route::get('index', [
-    'as' => 'trangchu',
+    'as' => 'index',
     'uses' => 'HomeController@Index'
 ]);
 //product detail

@@ -33,7 +33,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
     <div>
         <h1>
-            <a class="HomepPage" href="{{route('trangchu')}}">
+            <a class="HomepPage" href="{{route('index')}}">
                 <img src="source/images/logo2.png" alt=" ">
             </a>
         </h1>
