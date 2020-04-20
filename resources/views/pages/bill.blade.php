@@ -24,7 +24,7 @@
                 @endif
                 <input type="hidden" value="{{$i=1}}">
                 @foreach ($data as $item)
-                <form action="" method="post">
+                <form action="{{route('Bill_Details',$item->id)}}" method="get">
                     <input type="hidden" name='_token' value="{{csrf_token()}}">
 
                 <tr class="rem1">
