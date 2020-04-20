@@ -187,3 +187,7 @@ Route::get('PDF/{id?}', [
     'as' => 'PDF',
     'uses' => 'HomeController@PDF'
 ]);
+Route::get('UpdateStatus/{id?}', [
+    'as' => 'UpdateStatus',
+    'uses' => 'HomeController@UpdatePaid'
+]);
