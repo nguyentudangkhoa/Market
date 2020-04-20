@@ -13,9 +13,11 @@ use App\Customer;
 use Illuminate\Support\Facades\Session;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Foundation\Console\Presets\React;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\File;
+use PDF;
 
 class HomeController extends Controller
 {
@@ -482,7 +484,47 @@ class HomeController extends Controller
     }
     public function DeleteBill(Request $req){
         $data = Bill::find($req->id);
+        $billDetails = BillDetail::where('id_bill',$data->id)->get();
+        foreach($billDetails as $item){
+            $item->delete();
+        }
         $data->delete();
         return redirect()->back()->with("Report","Delete bill successfully");
+    }
+    public function Bill_Details(Request $req){
+        $array = array();
+        $bill = Bill::find($req->id);
+        $customer = Customer::where('id',$bill->id_customer)->first();
+        $billDetails = BillDetail::where('id_bill',$bill->id)->get();
+        foreach($billDetails as $detail){
+            $product = Product::where('id',$detail->id_product)->first();
+            $object = (object)[
+                'name' => $product->name,
+                'quantity' => $detail->quantity,
+                'unit_price' => $product->unit_price,
+                'promotion_price' => $product->promotion_price
+            ];
+            array_push($array,$object);
+        }
+        return view('pages.bill_details',compact('bill','customer','billDetails','array'));
+    }
+    public function PDF(Request $req)
+    {
+        $array = array();
+        $bill = Bill::find($req->id);
+        $customer = Customer::where('id',$bill->id_customer)->first();
+        $billDetails = BillDetail::where('id_bill',$bill->id)->get();
+        foreach($billDetails as $detail){
+            $product = Product::where('id',$detail->id_product)->first();
+            $object = (object)[
+                'name' => $product->name,
+                'quantity' => $detail->quantity,
+                'unit_price' => $product->unit_price,
+                'promotion_price' => $product->promotion_price
+            ];
+            array_push($array,$object);
+        }
+        $pdf = PDF::loadView('pages.PDF',compact('bill','customer','billDetails','array'));//not error
+        return $pdf->download('Bill_'.strtoupper($customer->name).'.pdf');
     }
 }

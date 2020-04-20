@@ -179,3 +179,11 @@ Route::get('DeleteBill/{id?}', [
     'as' => 'DeleteBill',
     'uses' => 'HomeController@DeleteBill'
 ]);
+Route::get('Bill_Details/{id?}', [
+    'as' => 'Bill_Details',
+    'uses' => 'HomeController@Bill_Details'
+]);
+Route::get('PDF/{id?}', [
+    'as' => 'PDF',
+    'uses' => 'HomeController@PDF'
+]);
