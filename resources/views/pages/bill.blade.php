@@ -15,6 +15,7 @@
                     <th>Payment</th>
                     <th>Total Price</th>
                     <th>Note</th>
+                    <th>Status</th>
                     <th>Function button</th>
                 </tr>
             </thead>
@@ -33,6 +34,11 @@
                     <td class="invert">{{$item->payment}}</td>
                     <td class="invert">{{$item->total}}</td>
                     <td class="invert">{{$item->note}}</td>
+                    @if ($item->status_bill == 1)
+                        <td class="invert">Aldeary paid</td>
+                    @else
+                        <td class="invert">Unpaid</td>
+                    @endif
                     <td class="invert">
                         <div class="rem">
                                 <input type="submit" value="Details" class="btn btn-danger"/>

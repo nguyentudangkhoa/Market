@@ -255,6 +255,7 @@ class HomeController extends Controller
         $bill->total = $cart->totalPrice;
         $bill->payment = "COD";
         $bill->note = $req->notes;
+        $bill->status_bill = 0;
         $bill->save(); //Add item to bill table
 
         foreach ($cart->items as $key => $value) {
@@ -526,5 +527,12 @@ class HomeController extends Controller
         }
         $pdf = PDF::loadView('pages.PDF',compact('bill','customer','billDetails','array'));//not error
         return $pdf->download('Bill_'.strtoupper($customer->name).'.pdf');
+    }
+    public function UpdatePaid(Request $req)
+    {
+        $bill = Bill::find($req->id);
+        $bill->status_bill = 1;
+        $bill->save();
+        return redirect()->back()->with("Report","The bill have paid");
     }
 }
