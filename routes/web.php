@@ -191,3 +191,11 @@ Route::get('UpdateStatus/{id?}', [
     'as' => 'UpdateStatus',
     'uses' => 'HomeController@UpdatePaid'
 ]);
+Route::get('Customer-manager', [
+    'as' => 'Customer-manager',
+    'uses' => 'HomeController@Customer'
+]);
+Route::get('DeleteCustomer/{id}', [
+    'as' => 'DeleteCustomer',
+    'uses' => 'HomeController@DeleteCustomer'
+]);

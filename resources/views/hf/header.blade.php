@@ -158,30 +158,40 @@
                                     </div>
                                 </ul>
                             </li>
+                            <li class="">
+                                <a class="nav-stylehead" href={{route('faqs')}}>Faqs</a>
+                            </li>
+                            <li class="">
+                                <a class="nav-stylehead" href={{route('contact')}}>Contact</a>
+                            </li>
+
                             @if (Auth::check())
                                 @if(Auth::user()->authority == 1)
-                                    <li class="" style="background-color:#E33539">
-                                        <a class="nav-stylehead"  href="{{route('addproduct')}}">Add a product</a>
-                                    </li>
-                                    <li class="" style="background-color:#E33539">
-                                        <a class="nav-stylehead"  href="{{route('Bill')}}">Bill Manager</a>
-                                    </li>
-                                @else
-                                    <li class="">
-                                        <a class="nav-stylehead" href={{route('faqs')}}>Faqs</a>
-                                    </li>
-                                    <li class="">
-                                        <a class="nav-stylehead" href={{route('contact')}}>Contact</a>
+
+                                    <li class="dropdown" style="background-color:#E33539">
+                                        <a href="{{route('product')}}" class="dropdown-toggle nav-stylehead" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Function
+                                            <span class="caret"></span>
+                                        </a>
+                                        <ul class="dropdown-menu multi-column columns-3">
+                                            <div class="agile_inner_drop_nav_info">
+                                                <div class="col-sm-4 multi-gd-img">
+                                                    <ul class="multi-column-dropdown">
+                                                        <li class="">
+                                                            <a class="nav-stylehead"  href="{{route('addproduct')}}">Add a product</a>
+                                                        </li>
+                                                        <li class="">
+                                                            <a class="nav-stylehead"  href="{{route('Bill')}}">Bill Manager</a>
+                                                        </li>
+                                                        <li class="">
+                                                            <a class="nav-stylehead"  href="{{route('Customer-manager')}}">Customer Manager</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </ul>
                                     </li>
                                 @endif
-                            @else
-                                <li class="">
-                                    <a class="nav-stylehead" href={{route('faqs')}}>Faqs</a>
-                                </li>
-                                <li class="">
-                                    <a class="nav-stylehead" href={{route('contact')}}>Contact</a>
-                                </li>
-
                             @endif
 
                         </ul>

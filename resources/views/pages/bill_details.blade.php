@@ -7,10 +7,14 @@
         <div class="alert alert-success">{{Session::get('Report')}}</div>
     @endif
     <div style="margin-left:20%"><h1>Bill Details</h1></div>
+    <label style="margin-top:5px;">Bill id: {{$bill->id}}</label><br>
     <div class="company-name" style="margin-top:30px;">
         <h3>Grocery Shoppy</h3>
         <div>
             <img src="source/images/logo2.png" alt=" ">
+        </div>
+        <div class="address" style="margin-top:5px;">
+            <h3>Address: 12 district</h3><br>
         </div>
     </div>
         <label style="margin-top:15px;">CUSTOMER NAME: {{$customer->name}}</label><br>

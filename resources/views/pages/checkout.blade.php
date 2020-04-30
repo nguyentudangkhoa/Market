@@ -17,6 +17,7 @@
 	<!-- //page -->
 	<!-- checkout page -->
 	<div class="privacy">
+        <form action="{{route('checkout')}}" method="post" class="creditly-card-form agileinfo_form">
 		<div class="container">
 			<!-- tittle heading -->
 			<h3 class="tittle-w3l">Checkout
@@ -57,9 +58,10 @@
 								</td>
 								<td class="invert">
 									<div class="quantity">
-										<div class="quantity-select">
-											<div class="entry value">
-                                            <span>{{$product['qty']}}</span>
+										<div class="">
+											<div class="">
+                                            <input id="quantity" name="quantity" style="width:10%" value="{{$product['qty']}}">
+                                            {{ csrf_field() }}
 											</div>
 										</div>
 									</div>
@@ -95,7 +97,7 @@
             <div class="checkout-left">
 				<div class="address_form_agile">
 					<h4>Add a new Details</h4>
-                <form action="{{route('checkout')}}" method="post" class="creditly-card-form agileinfo_form">
+
                     <input type="hidden" name="_token" value={{ csrf_token() }} >
                     @if(Session::has('Thongbao'))
                         <div class="alert alert-success">{{Session::get('Thongbao')}}</div>
@@ -137,12 +139,54 @@
 								<button class="submit check_out">Delivery to this Address</button>
 							</div>
 						</div>
-					</form>
 
 				</div>
 				<div class="clearfix"> </div>
 			</div>
-		</div>
+        </div>
+        {{ csrf_field() }}
+    </form>
+    <script>
+        $(document).ready(function(){
+             $('#email').keyup(function(){
+                    var email = $(this).val();
+                    if(email != '')
+                    {
+                     var _token = $('input[name="_token"]').val();
+                     $.ajax({
+                      url:"{{ route('validateSignUp') }}",
+                      method:"POST",
+                      data:{email:email, _token:_token},
+                      success:function(data){
+                        $('#validate_email').fadeIn();
+                        $('#validate_email').html(data);
+                      }
+                     });
+                    }else{
+                        $('#validate_email').html("");
+                    }
+                });
+                $('#quantity').keyup(function(){
+                    var re_password = $(this).val();
+                    var password = $('#password1').val();
+                    if(re_password != '')
+                    {
+                     var _token = $('input[name="_token"]').val();
+                     $.ajax({
+                      url:"{{ route('validateSignUp') }}",
+                      method:"POST",
+                      data:{re_password:re_password,password:password, _token:_token},
+                      success:function(data){
+                        $('#validate_password').fadeIn();
+                        $('#validate_password').html(data);
+                      }
+                     });
+                    }else{
+                        $('#validate_password').html("");
+                    }
+                });
+            });
+    </script>
 	</div>
     <!-- //checkout page -->
             @else

@@ -239,31 +239,54 @@ class HomeController extends Controller
     public function postCheckout(Request $req)
     {
         $cart = Session::get('cart');
-
-        $customer = new Customer;
-        $customer->name = $req->name;
-        $customer->email = $req->email;
-        $customer->address = $req->address;
-        $customer->gender = $req->gender;
-        $customer->phone_number = $req->phone;
-        $customer->note = $req->notes;
-        $customer->save(); //Add item to customer tatble
-
+        $user = User::where('email',$req->email)->first();
+        $customerCheck = Customer::where('name',$req->name)->where('email',$req->email)->where('address',$req->address)->first();
         $bill = new Bill;
-        $bill->id_customer = $customer->id;
-        $bill->date_order = date('Y-m-d');
-        $bill->total = $cart->totalPrice;
-        $bill->payment = "COD";
-        $bill->note = $req->notes;
-        $bill->status_bill = 0;
-        $bill->save(); //Add item to bill table
+        $customer = new Customer;
+        if($customerCheck){
+            $customerCheck->quantity = $customerCheck->quantity+1;
+            $customerCheck->save();
+            $bill->id_customer = $customerCheck->id;
+            $bill->date_order = date('Y-m-d');
+            $bill->total = $cart->totalPrice;
+            $bill->payment = "COD";
+            $bill->note = $req->notes;
+            $bill->status_bill = 0;
+            $bill->save(); //Add item to bill table
+        }
+        else{
+
+            $customer->name = $req->name;
+            $customer->email = $req->email;
+            $customer->address = $req->address;
+            $customer->gender = $req->gender;
+            $customer->phone_number = $req->phone;
+            $customer->note = $req->notes;
+
+            if($user){
+                $customer->member = 1;
+            }else{
+                $customer->member = 0;
+            }
+            $customer->quantity = 1;
+            $customer->save();
+            $bill->id_customer = $customer->id;
+            $bill->date_order = date('Y-m-d');
+            $bill->total = $cart->totalPrice;
+            $bill->payment = "COD";
+            $bill->note = $req->notes;
+            $bill->status_bill = 0;
+            $bill->save(); //Add item to bill table
+        }
+         //Add item to customer tatble
+
 
         foreach ($cart->items as $key => $value) {
             $bill_detail = new BillDetail;
             $bill_detail->id_bill = $bill->id;
             $bill_detail->id_product = $key;
-            $bill_detail->quantity = $value['qty'];
-            $bill_detail->unit_price = ($value['price'] / $value['qty']);
+            $bill_detail->quantity = $req->quantity;
+            $bill_detail->unit_price = ($value['price'] / $req->quantity);
             $bill_detail->save(); //Add item to bill_detail table
         }
         Session::forget('cart');
@@ -486,9 +509,13 @@ class HomeController extends Controller
     public function DeleteBill(Request $req){
         $data = Bill::find($req->id);
         $billDetails = BillDetail::where('id_bill',$data->id)->get();
+        $customer = Customer::where('id',$data->id_customer)->get();
         foreach($billDetails as $item){
             $item->delete();
         }
+        $customer = Customer::where('id',$data->id_customer)->first();
+        $customer->quantity -= 1;
+        $customer->save();
         $data->delete();
         return redirect()->back()->with("Report","Delete bill successfully");
     }
@@ -534,5 +561,23 @@ class HomeController extends Controller
         $bill->status_bill = 1;
         $bill->save();
         return redirect()->back()->with("Report","The bill have paid");
+    }
+    //Customer Manager
+    public function Customer(){
+        $customer = Customer::paginate(9);
+        return view('pages.customer',compact('customer'));
+    }
+    public function DeleteCustomer(Request $req){
+        $customer = Customer::find($req->id);
+        $bill = Bill::where('id_customer',$req->id)->get();
+        foreach($bill as $item){
+            $detail = BillDetail::where("id_bill",$item->id)->get();
+            foreach($detail as $item2){
+                $item2->delete();
+            }
+            $item->delete();
+        }
+        $customer->delete();
+        return redirect()->back()->with("Report","Delete customer successfully");
     }
 }
