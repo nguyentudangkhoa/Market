@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 24, 2020 at 09:42 AM
+-- Generation Time: May 03, 2020 at 04:00 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.4
 
@@ -39,13 +39,6 @@ CREATE TABLE `bills` (
   `updated_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `bills`
---
-
-INSERT INTO `bills` (`id`, `id_customer`, `date_order`, `total`, `status_bill`, `payment`, `note`, `created_at`, `updated_at`) VALUES
-(16, 17, '2020-04-24', 150000, '0', 'COD', 'giao dúng hạn', '2020-04-24 07:39:53', '2020-04-24 07:39:53');
-
 -- --------------------------------------------------------
 
 --
@@ -62,13 +55,6 @@ CREATE TABLE `bill_detail` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `bill_detail`
---
-
-INSERT INTO `bill_detail` (`id`, `id_bill`, `id_product`, `quantity`, `unit_price`, `created_at`, `updated_at`) VALUES
-(19, 16, 22, 1, 150000, '2020-04-24 07:39:53', '2020-04-24 07:39:53');
-
 -- --------------------------------------------------------
 
 --
@@ -83,6 +69,8 @@ CREATE TABLE `customer` (
   `address` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `phone_number` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `note` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  `member` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -91,14 +79,10 @@ CREATE TABLE `customer` (
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`id`, `name`, `gender`, `email`, `address`, `phone_number`, `note`, `created_at`, `updated_at`) VALUES
-(11, 'Hương Hương', 'Nữ', 'huongnguyenak96@gmail.com', 'Lê Thị Riêng, Quận 1', '234567890-', 'không chú', '2017-03-21 07:16:09', '2017-03-21 07:16:09'),
-(12, 'Khoa phạm', 'Nam', 'khoapham@gmail.com', 'Lê thị riêng', '1234567890', 'Vui lòng chuyển đúng hạn', '2017-03-21 07:20:07', '2017-03-21 07:20:07'),
-(13, 'Hương Hương', 'Nữ', 'huongnguyenak96@gmail.com', 'Lê Thị Riêng, Quận 1', '23456789', 'Vui lòng giao hàng trước 5h', '2017-03-21 07:29:31', '2017-03-21 07:29:31'),
-(14, 'hhh', 'nam', 'huongnguyen@gmail.com', 'Lê thị riêng', '99999999999999999', 'k', '2017-03-23 04:46:05', '2017-03-23 04:46:05'),
-(15, 'ê', 'Nữ', 'huongnguyen@gmail.com', 'e', 'e', 'e', '2017-03-24 07:14:32', '2017-03-24 07:14:32'),
-(16, 'nguyentudangkhoa', 'Nam', 'nguyentudangkhoa@gmail.com', '75 Võ Hữu', '(+84) 389643555', 'giao dúng hạn', '2020-04-24 07:37:17', '2020-04-24 07:37:17'),
-(17, 'nguyentudangkhoa', 'Nam', 'nguyentudangkhoa@gmail.com', '75 Võ Hữu', '(+84) 389643555', 'giao dúng hạn', '2020-04-24 07:39:53', '2020-04-24 07:39:53');
+INSERT INTO `customer` (`id`, `name`, `gender`, `email`, `address`, `phone_number`, `note`, `quantity`, `member`, `created_at`, `updated_at`) VALUES
+(27, 'nguyentudangkhoa', 'Nam', 'khoakute1997@gmail.com', '75 Võ Hữu', '(+84) 389643555', 'giao dúng hạn', 0, 1, '2020-04-30 05:21:03', '2020-04-30 05:03:09'),
+(28, 'nguyentudangkhoa', 'Nam', 'nguyentudangkhoa@gmail.com', '75 Võ Hữu', '(+84) 389643555', '123', 0, 1, '2020-04-30 05:27:51', '2020-04-30 05:27:51'),
+(29, 'nguyentudangkhoa', 'Nam', 'nguyentudangkhoa@gmail.com', 'Phan Thiet', '(+84) 389643555', 'ko có note', 0, 1, '2020-04-30 05:26:51', '2020-04-30 05:26:51');
 
 -- --------------------------------------------------------
 
@@ -326,19 +310,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `bills`
 --
 ALTER TABLE `bills`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `bill_detail`
 --
 ALTER TABLE `bill_detail`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `products`
