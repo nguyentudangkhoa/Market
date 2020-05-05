@@ -580,4 +580,49 @@ class HomeController extends Controller
         $customer->delete();
         return redirect()->back()->with("Report","Delete customer successfully");
     }
+    //Member manager
+    public function Member(){
+        $members = array();
+        $memberItems = User::where('authority','!=',1)->get();
+        foreach($memberItems as $item){
+            $total = 0;
+            $customers = Customer::where('email',$item->email)->get();
+            foreach($customers as $customer){
+                $total += $customer->quantity;
+            }
+            $object = (object)[
+                'id'=>$item->id,
+                'full_name' => $item->full_name,
+                'email' => $item->email,
+                'address' => $item->address,
+                'phone' => $item->phone,
+                'total'=>$total
+            ];
+            array_push($members,$object);
+        }
+        return view('pages.member',compact('members'));
+    }
+    public function DeleteUser(Request $req){
+        $members = User::find($req->id);
+        $customer = Customer::where('email',$members->email)->get();
+        if(!$customer){
+            $members->delete();
+            return redirect()->back()->with("Report","Delete User successfully");
+        }else{
+            foreach($customer as $cus){
+                $bill = Bill::where('id_customer',$cus->id)->get();
+                foreach($bill as $item){
+                    $detail = BillDetail::where("id_bill",$item->id)->get();
+                    foreach($detail as $item2){
+                        $item2->delete();// delete item which using id
+                    }
+                    $item->delete();//delete bill which using id
+                }
+                $cus->member = 0;
+                $cus->save();
+            }
+            $members->delete();
+            return redirect()->back()->with("Report","Delete User successfully");
+        }
+    }
 }

@@ -199,3 +199,11 @@ Route::get('DeleteCustomer/{id}', [
     'as' => 'DeleteCustomer',
     'uses' => 'HomeController@DeleteCustomer'
 ]);
+Route::get('Members', [
+    'as' => 'Members',
+    'uses' => 'HomeController@Member'
+]);
+Route::get('DeleteUser/{id}', [
+    'as' => 'DeleteUser',
+    'uses' => 'HomeController@DeleteUser'
+]);

@@ -185,6 +185,9 @@
                                                         <li class="">
                                                             <a class="nav-stylehead"  href="{{route('Customer-manager')}}">Customer Manager</a>
                                                         </li>
+                                                        <li class="">
+                                                            <a class="nav-stylehead"  href="{{route('Members')}}">Members Manager</a>
+                                                        </li>
                                                     </ul>
                                                 </div>
                                                 <div class="clearfix"></div>
