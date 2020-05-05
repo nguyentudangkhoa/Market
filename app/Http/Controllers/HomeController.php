@@ -549,16 +549,16 @@ class HomeController extends Controller
                 'quantity' => $detail->quantity,
                 'unit_price' => $product->unit_price,
                 'promotion_price' => $product->promotion_price
-            ];
-            array_push($array,$object);
+            ];//add infomations of differences table to a object
+            array_push($array,$object);//add object to array
         }
         $pdf = PDF::loadView('pages.PDF',compact('bill','customer','billDetails','array'));//not error
         return $pdf->download('Bill_'.strtoupper($customer->name).'.pdf');
     }
     public function UpdatePaid(Request $req)
     {
-        $bill = Bill::find($req->id);
-        $bill->status_bill = 1;
+        $bill = Bill::find($req->id);//find bill with id
+        $bill->status_bill = 1;//Update status
         $bill->save();
         return redirect()->back()->with("Report","The bill have paid");
     }
@@ -573,9 +573,9 @@ class HomeController extends Controller
         foreach($bill as $item){
             $detail = BillDetail::where("id_bill",$item->id)->get();
             foreach($detail as $item2){
-                $item2->delete();
+                $item2->delete();// delete item which using id
             }
-            $item->delete();
+            $item->delete();//delete bill which using id
         }
         $customer->delete();
         return redirect()->back()->with("Report","Delete customer successfully");
