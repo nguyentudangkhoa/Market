@@ -18,7 +18,7 @@
 	<!-- checkout page -->
 	<div class="privacy">
         @if(Session::has('thongbao'))
-                        <div class="alert alert-success">{{Session::get('thongbao')}}</div>
+            <div class="alert alert-success">{{Session::get('thongbao')}}</div>
         @endif
         <form action="{{route('checkout')}}" method="post" class="creditly-card-form agileinfo_form">
 		<div class="container">
