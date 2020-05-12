@@ -6,7 +6,7 @@
 	<div class="ads-grid">
 		<div class="container">
 			<!-- tittle heading -->
-			<h3 class="tittle-w3l">Kitchen Products
+			<h3 class="tittle-w3l">Search Result
 				<span class="heading-style">
 					<i></i>
 					<i></i>

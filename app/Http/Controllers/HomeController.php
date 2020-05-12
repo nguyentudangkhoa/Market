@@ -27,7 +27,7 @@ class HomeController extends Controller
         $imgs = Product::where('id_type', '=', 1)->limit(3)->get(); //section 1
         $data1 = Product::where('id_type', '=', 2)->limit(3)->get(); //section 2
         $data2 = Product::where('id_type', 3)->limit(3)->get(); //Section 3
-        $data5 = Product::limit(10)->get();
+        $data5 = Product::limit(10)->orderBy('created_at','asc')->get();
         $data4 = Product::where('promotion_price', '>', 0)->limit(3)->get(); //Section Discount
         return view('pages.index', compact('imgs', 'data1', 'data2', 'data5', 'data4'));
     }
@@ -38,21 +38,21 @@ class HomeController extends Controller
         $array = json_decode($sanpham, true); // chuyển json thành array
         $sp = array_column($array, 'id_type'); // lấy item id_type của array
         //$sp2 = json_decode($sanpham,true);
-        $data2 = Product::where('id_type', $sp)->limit(10)->get(); // lấy sản phẩm liên quan
+        $data2 = Product::where('id_type', $sp)->limit(10)->orderBy('created_at','asc')->get(); // lấy sản phẩm liên quan
         return view('pages.single', compact('sanpham', 'data2', 'array'));
     }
     //Template Kitchen
     public function Product()
     {
-        $data = Product::where('id_type', '=', 4)->paginate(9); //Product item
-        $data3 = Product::limit(10)->get(); //same type
+        $data = Product::where('id_type', '=', 4)->orderBy('created_at','asc')->paginate(9); //Product item
+        $data3 = Product::limit(10)->orderBy('created_at','asc')->get(); //same type
         return view('pages.product', compact('data', 'data3'));
     }
     //Template Product HouseHold
     public function Product2()
     {
-        $data = Product::where('id_type', '=', 5)->paginate(9); //Product 2 item
-        $data3 = Product::limit(10)->get(); //same Type
+        $data = Product::where('id_type', '=', 5)->orderBy('created_at','asc')->paginate(9); //Product 2 item
+        $data3 = Product::limit(10)->orderBy('created_at','asc')->get(); //same Type
         return view('pages.product2', ['data' => $data, 'data3' => $data3]);
     }
     //Template Payment

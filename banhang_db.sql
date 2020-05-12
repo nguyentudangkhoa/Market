@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 03, 2020 at 04:00 AM
+-- Generation Time: May 12, 2020 at 04:24 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.4
 
@@ -39,6 +39,13 @@ CREATE TABLE `bills` (
   `updated_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `bills`
+--
+
+INSERT INTO `bills` (`id`, `id_customer`, `date_order`, `total`, `status_bill`, `payment`, `note`, `created_at`, `updated_at`) VALUES
+(43, 30, '2020-05-11', 480000, '0', 'COD', 'giao dúng hạn', '2020-05-11 07:17:59', '2020-05-11 07:17:59');
+
 -- --------------------------------------------------------
 
 --
@@ -54,6 +61,14 @@ CREATE TABLE `bill_detail` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `bill_detail`
+--
+
+INSERT INTO `bill_detail` (`id`, `id_bill`, `id_product`, `quantity`, `unit_price`, `created_at`, `updated_at`) VALUES
+(58, 43, 22, 1, 300000, '2020-05-11 07:17:59', '2020-05-11 07:17:59'),
+(59, 43, 24, 1, 180000, '2020-05-11 07:17:59', '2020-05-11 07:17:59');
 
 -- --------------------------------------------------------
 
@@ -80,9 +95,7 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`id`, `name`, `gender`, `email`, `address`, `phone_number`, `note`, `quantity`, `member`, `created_at`, `updated_at`) VALUES
-(27, 'nguyentudangkhoa', 'Nam', 'khoakute1997@gmail.com', '75 Võ Hữu', '(+84) 389643555', 'giao dúng hạn', 0, 1, '2020-04-30 05:21:03', '2020-04-30 05:03:09'),
-(28, 'nguyentudangkhoa', 'Nam', 'nguyentudangkhoa@gmail.com', '75 Võ Hữu', '(+84) 389643555', '123', 0, 1, '2020-04-30 05:27:51', '2020-04-30 05:27:51'),
-(29, 'nguyentudangkhoa', 'Nam', 'nguyentudangkhoa@gmail.com', 'Phan Thiet', '(+84) 389643555', 'ko có note', 0, 1, '2020-04-30 05:26:51', '2020-04-30 05:26:51');
+(30, 'nguyentudangkhoa', 'Nam', 'nguyentudangkhoa@gmail.com', '75 Võ Hữu', '(+84) 389643555', 'giao dúng hạn', 1, 1, '2020-05-11 07:48:03', '2020-05-11 07:48:03');
 
 -- --------------------------------------------------------
 
@@ -160,7 +173,9 @@ INSERT INTO `products` (`id`, `name`, `id_type`, `description`, `unit_price`, `p
 (49, 'All Out 480 Hours', 5, '', 120000, 100000, 'a10.jpg', 'cái', 0, '2016-10-13 02:20:00', '2016-10-19 03:20:00'),
 (50, 'Wall Hanging', 5, '', 120000, 100000, 'a11.jpg', 'cái', 0, '2016-10-13 02:20:00', '2016-10-19 03:20:00'),
 (69, 'Colin Regular Refill', 5, NULL, 200000, 160000, 'a12.jpg', 'bộ', 1, '2019-11-12 10:34:00', '2019-11-12 10:34:00'),
-(70, 'Vim', 5, 'none', 130000, 0, 'a1.jpg', NULL, 0, '2019-12-26 19:46:29', '2019-12-26 19:46:29');
+(70, 'Vim', 5, 'none', 130000, 0, 'a1.jpg', NULL, 0, '2019-12-26 19:46:29', '2019-12-26 19:46:29'),
+(75, 'Saffola Gold, 1L', 2, 'none', 30000, 0, 'mk5.jpg', NULL, 0, '2020-05-12 02:14:14', '2020-05-12 02:14:14'),
+(76, 'Yippee Noodles, 65g', 3, 'none', 45000, 12000, 'mk7.jpg', NULL, 0, '2020-05-12 02:15:28', '2020-05-12 02:15:28');
 
 -- --------------------------------------------------------
 
@@ -235,15 +250,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `full_name`, `email`, `password`, `phone`, `address`, `remember_token`, `created_at`, `updated_at`, `authority`, `images_prof`) VALUES
-(6, 'Hương Hương', 'huonghuong08.php@gmail.com', '$2y$10$rGY4KT6ZSMmLnxIbmTXrsu2xdgRxm8x0UTwCyYCAzrJ320kYheSRq', '23456789', 'Hoàng Diệu 2', NULL, '2017-03-23 07:17:33', '2017-03-23 07:17:33', 0, NULL),
-(7, 'LeThanhNhan', 'LeThanhNhan@gmail.com', '$2y$10$gtZbqr1ckKM/1qfLh8smHOMg7WoAuTJbZsc0s1Gzyt0VaoTM88PvS', NULL, NULL, NULL, '2019-12-14 00:45:53', '2019-12-14 00:45:53', 0, NULL),
-(8, 'Nguyen Duy Truong', 'TruongNguLol@gmail.com', '$2y$10$/b9paGs9Q9IuOIQOlxieYOuu6HiWUCfxxIfjq6QqLFZt/YmQoxEi.', NULL, NULL, NULL, '2019-12-14 01:06:16', '2019-12-14 01:06:16', 0, NULL),
-(10, 'Lê Hô Nibba', 'Nibba@gmail.com', '$2y$10$9xhFO852gSDEJYEsA/ovne.D9VMAmDHYLVnreeaIUhqlta/86fKSu', NULL, NULL, NULL, '2019-12-15 10:04:41', '2019-12-15 10:04:41', 0, NULL),
-(11, 'Khoa Nguyễn', 'khoakute1997@gmail.com', '$2y$10$zptSenHFxO5lpOEcVlKIB.wQCQ9RL4gnvVkPyUfH93UJ7/VzyQaTC', '0389643555', 'Phan Thiết', NULL, '2019-12-16 07:07:59', '2020-03-30 20:46:49', 0, '68817350_2176078199184468_8622629880216944640_o.jpg'),
 (12, 'admin', 'admin@gmail.com', '$2y$10$rDLe3iHhpdhI5udzDeZuhuk6K0amG9E3DVvurhQG/Nua0zeqXUaci', NULL, NULL, NULL, '2019-12-22 05:02:12', '2019-12-22 05:02:12', 1, NULL),
-(13, 'Khoa Nguyen', 'khoanguyen@gmail.com', '$2y$10$5ebG6Fu00RDfl8I/8yVgMetGu4L8er.BoFBpeNVERW0JlHgxwULdm', '0389643555', 'Phan Thiet', NULL, '2019-12-26 19:37:30', '2020-03-16 19:49:02', 0, '84287822_2499644613494490_4522580917507588096_o.jpg'),
-(14, 'Khoa', 'animation@gmail.com', '$2y$10$fHEINsxeKVx8smQt7izD8eXD.BOB9lW6a8jlzH52XpUc.zj1I9QYG', NULL, 'Tp. Hồ Chí Minh', NULL, '2020-03-15 21:41:03', '2020-03-15 21:42:37', 0, '84287822_2499644613494490_4522580917507588096_o.jpg'),
-(15, 'Nguyễn Từ Đăng Khoa', 'nguyentudangkhoa@gmail.com', '$2y$10$oRwIrENO1nUwK3PVCIQpqO3vZV5U101QeVxe05ptz6eK1BBcqyZmq', '0389643555', 'Phan Thiet', NULL, '2020-04-11 01:05:42', '2020-04-11 06:21:18', 0, '68817350_2176078199184468_8622629880216944640_o.jpg');
+(17, 'Nguyễn Từ Đăng Khoa', 'nguyentudangkhoa@gmail.com', '$2y$10$pbDdoVfl2AFfGKp9DG8so.RmlGJpN6RRmmHK1Xu/gjmyBBWeOK5hy', '0389643555', '75 Võ Hữu', NULL, '2020-05-05 12:59:40', '2020-05-05 13:01:28', 0, '68817350_2176078199184468_8622629880216944640_o.jpg');
 
 --
 -- Indexes for dumped tables
@@ -310,25 +318,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `bills`
 --
 ALTER TABLE `bills`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `bill_detail`
 --
 ALTER TABLE `bill_detail`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT for table `slide`
@@ -346,7 +354,7 @@ ALTER TABLE `type_products`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Constraints for dumped tables
