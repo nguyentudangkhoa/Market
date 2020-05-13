@@ -1,6 +1,6 @@
 @extends('master')
 @section('content')
-<div class="modal-body modal-body-sub_agile" style="margin-left:15%;margin-right:15%;text-align:center">
+<div class="modal-body modal-body-sub_agile" style="">
     <div class="main-mailposi">
         <span class="fa fa-envelope-o" aria-hidden="true"></span>
     </div>
@@ -16,7 +16,7 @@
             <a href="{{route('Forgot-password')}}" style="color:orange">
                 Forgot password</a>
         </p>
-    <form action="{{route('signin')}}" method="post">
+    <form action="{{route('signin')}}" method="post" class="login-form-control">
         <input type="hidden" name="_token" value="{{csrf_token()}}">
         @if (count($errors)>0)
         <div class="alert alert-danger">

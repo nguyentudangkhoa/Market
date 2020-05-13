@@ -2,7 +2,7 @@
 @section('content')
 @if(Auth::check())
 @if(Auth::user()->authority == 1)
-<div class="bill-details" style="padding-left:30%;padding-top:5%;padding-bottom:10%">
+<div class="bill-details">
     @if(Session::has('Report'))
         <div class="alert alert-success">{{Session::get('Report')}}</div>
     @endif

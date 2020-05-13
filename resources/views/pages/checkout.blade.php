@@ -63,7 +63,7 @@
 									<div class="quantity">
 										<div class="">
 											<div class="">
-                                            <input id="quantity" name="quantity" style="width:10%" value="{{$product['qty']}}">
+                                            <input id="quantity" name="quantity" style="width:50%; text-align:center" value="{{$product['qty']}}">
                                             {{ csrf_field() }}
 											</div>
 										</div>
@@ -132,9 +132,9 @@
 										<input type="text" placeholder="Email" name="email" required="">
 									</div>
                                 </div>
-                                <div style="border-style: outset;">
+                                <div class="first-row">
                                         Gender:
-                                        <div>
+                                        <div class="controls">
                                             Nam:<input type="radio" name="gender" value="Nam" checked>
                                             Nữ: <input type="radio" name="gender" name="Nữ">
                                         </div>
