@@ -321,7 +321,7 @@ class HomeController extends Controller
     {
             $image = $req->file('image');
             $product = Product::find($req->id);
-            $image_path = "source/images/" . $product->image;  // Value is not URL but directory file path
+            $image_path = "source/images/" . $image->getClientOriginalName('myFile');  // Value is not URL but directory file path
             if ($product) {
                 $product->name = $req->product_name; //product name
                 $product->id_type = $req->product_type; // id type of product
@@ -332,9 +332,11 @@ class HomeController extends Controller
                     if ($req->hasFile('image')) {
                         if (File::exists($image_path)) { //Check existing image
                             File::delete($image_path); //delete image in a file
+                        }else{
+                            $product->image = $image->getClientOriginalName('myFile'); //Image
+                            $image->move('source/images', $image->getClientOriginalName('myFile')); //save images at resource/image
                         }
-                        $product->image = $image->getClientOriginalName('myFile'); //Image
-                        $image->move('source/images', $image->getClientOriginalName('myFile')); //save images at resource/image
+
                 }
                 $product->save(); //Save product to database
                 return redirect()->back()->with('reportUpdate', 'Update '.$product->name.'Successfull');
