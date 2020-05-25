@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\File;
 use PDF;
 use \App\Mail\SendMail;
+use Mail;
 class HomeController extends Controller
 {
     //Template Index
@@ -200,11 +201,11 @@ class HomeController extends Controller
                 $customer->save();
             }
         }
-        // $data = [
-        //     'title' => 'Title: Thanks from Grocery Shoppy',
-        //     'body' => 'Body: This is for testing email using smtp'
-        // ];
-        // \Mail::to($req->email)->send(new SendMail($data));
+        $data = [
+            'title' => 'Title: Thanks from Grocery Shoppy',
+            'body' => 'Body: This is for testing email using smtp'
+        ];
+        Mail::to($req->email)->send(new SendMail($data));
         $user->save(); //Add item to database
         return redirect()->back()->with('ThanhCong', 'Tạo tài khoản thành công');
     }

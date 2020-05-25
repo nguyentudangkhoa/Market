@@ -29,6 +29,7 @@ class SendMail extends Mailable
      */
     public function build()
     {
-        return $this->view('pages.signup');
+        return $this->subject('Thanks for signup a account from our website')
+                    ->view('email.sendmail');
     }
 }
