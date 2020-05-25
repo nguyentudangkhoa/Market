@@ -43,9 +43,10 @@
                         <div class="rem">
                                 <input type="submit" value="Details" class="btn btn-danger"/>
                 </form>
-                            <form action="{{route('DeleteBill',$item->id)}}" method="get" style="margin-top:10px">
+                            <form class="has-confirm" data-message="Do you want to delete this bill?" action="{{route('DeleteBill',$item->id)}}" method="get" style="margin-top:10px">
                                 <input type="submit" value="Delete Bill" class="btn btn-danger"/>
                             </form>
+
                         </div>
                     </td>
                 </tr>
@@ -57,6 +58,14 @@
         </table>
     </div>
 </div>
+<script type="text/javascript" >
+    $("form.has-confirm").submit(function (e) {
+        var $message = $(this).data('message');
+        if(!confirm($message)){
+            e.preventDefault();
+        }
+    });
+</script>
 @else
 <div class="address_form_agile">
         <h4>Page do not exist</h4>
@@ -68,3 +77,11 @@
 </div>
 @endif
 @endsection
+<script type="text/javascript" >
+    $("form.has-confirm").submit(function (e) {
+        var $message = $(this).data('message');
+        if(!confirm($message)){
+            e.preventDefault();
+        }
+    });
+</script>

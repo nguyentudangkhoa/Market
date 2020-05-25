@@ -27,7 +27,7 @@
                 @endif
                 <input type="hidden" value="{{$i=1}}">
                 @foreach ($customer as $item)
-                <form action="{{route('DeleteCustomer',$item->id)}}" method="get">
+                <form class="has-confirm" data-message="Do you want to delete this Customer?" action="{{route('DeleteCustomer',$item->id)}}" method="get">
                     <input type="hidden" name='_token' value="{{csrf_token()}}">
 
                 <tr class="rem1">
@@ -57,6 +57,14 @@
         </table>
     </div>
 </div>
+<script type="text/javascript" >
+    $("form.has-confirm").submit(function (e) {
+        var $message = $(this).data('message');
+        if(!confirm($message)){
+            e.preventDefault();
+        }
+    });
+</script>
 @else
 <div class="address_form_agile">
         <h4>Page do not exist</h4>

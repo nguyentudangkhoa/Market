@@ -97,6 +97,14 @@
 					</table>
 				</div>
             </div>
+            <script type="text/javascript" >
+                $("form.has-confirm").submit(function (e) {
+                    var $message = $(this).data('message');
+                    if(!confirm($message)){
+                        e.preventDefault();
+                    }
+                });
+            </script>
             <div class="checkout-left">
 				<div class="address_form_agile">
 					<h4>Add a new Details</h4>
