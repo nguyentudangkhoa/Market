@@ -146,17 +146,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<!-- cart details -->
 				<div class="top_nav_right">
 					<div class="wthreecartaits wthreecartaits2 cart cart box_1">
-                    <a href="{{route('checkout.html')}}">
-							<button class="w3view-cart" type="submit" name="submit" value="">
+                    <form action="{{route('checkout.html')}}" method="get" style="font-size:5px">
+							<button class="w3view-cart" type="submit" value="">
                                 @if(Session::has('cart'))
-								<i class="fa fa-cart-arrow-down" aria-hidden="true">{{Session('cart')->totalQty}}
+								{{Session('cart')->totalQty}}<i class="fa fa-cart-arrow-down" aria-hidden="true">
                                 </i>
                                 @else
                                 <i class="fa fa-cart-arrow-down" aria-hidden="true">
                                 </i>
                                 @endif
 							</button>
-					</a>
+					</form>
 					</div>
 				</div>
 				<!-- //cart details -->

@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\File;
 use PDF;
-
+use \App\Mail\SendMail;
 class HomeController extends Controller
 {
     //Template Index
@@ -200,6 +200,11 @@ class HomeController extends Controller
                 $customer->save();
             }
         }
+        // $data = [
+        //     'title' => 'Title: Thanks from Grocery Shoppy',
+        //     'body' => 'Body: This is for testing email using smtp'
+        // ];
+        // \Mail::to($req->email)->send(new SendMail($data));
         $user->save(); //Add item to database
         return redirect()->back()->with('ThanhCong', 'Tạo tài khoản thành công');
     }
@@ -490,6 +495,13 @@ class HomeController extends Controller
                 else{
                     echo "you can use this email";
                 }
+            }
+        }
+        if($req->get('email_checkout')){
+            if(!filter_var($req->get('email_checkout'), FILTER_VALIDATE_EMAIL)) {
+                echo "email is invalid!";
+            }else{
+                echo "you can use this email";
             }
         }
         if($req->get('re_password')){

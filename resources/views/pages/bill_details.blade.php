@@ -2,11 +2,11 @@
 @section('content')
 @if(Auth::check())
 @if(Auth::user()->authority == 1)
-<div class="bill-details">
+<div class="bill-details" style="">
     @if(Session::has('Report'))
         <div class="alert alert-success">{{Session::get('Report')}}</div>
     @endif
-    <div style="margin-left:20%"><h1>Bill Details</h1></div>
+    <div ><h1>Bill Details</h1></div>
     <label style="margin-top:5px;">Bill id: {{$bill->id}}</label><br>
     <div class="company-name" style="margin-top:30px;">
         <h3>Grocery Shoppy</h3>
@@ -63,18 +63,26 @@
     </table>
     <label style="margin-top:5px;"><h3>Payment: {{$bill->payment}}</h3> </label><br>
     <label style="margin-top:5px;"><h3>Address customer: {{$customer->address}}</h3></label> <br>
-    <form action="{{route('PDF',$bill->id)}}" method="get">
+    <form class="has-confirm" data-message="Do you want to print this bill?" action="{{route('PDF',$bill->id)}}" method="get">
         <button type="submit" class="btn btn-danger" style="boder-width:0px; margin-top:10px"><span class="glyphicon glyphicon-print"></span> Export bill</button>
     </form>
     @if($bill->status_bill != 1)
-    <form action="{{route('UpdateStatus',$bill->id)}}" method="get">
+    <form action="{{route('UpdateStatus',$bill->id)}}" class="has-confirm" data-message="Do you want to confirm paid this bill?" method="get">
         <button type="submit" class="btn btn-danger" style="boder-width:0px; margin-top:10px"><span class="glyphicon glyphicon-print"></span> Confirm paid</button>
     </form>
     @else
-    <form action="{{route('UpdateStatus',$bill->id)}}" method="get">
+    <form action="{{route('UpdateStatus',$bill->id)}}" class="has-confirm" data-message="Do you want to confirm paid this bill?" method="get">
         <button  type="submit" class="btn btn-danger" style="boder-width:0px; margin-top:10px" disabled><span class="glyphicon glyphicon-print"></span>Confirm paid</button>
     </form>
     @endif
+    <script type="text/javascript" >
+        $("form.has-confirm").submit(function (e) {
+            var $message = $(this).data('message');
+            if(!confirm($message)){
+                e.preventDefault();
+            }
+        });
+    </script>
 </div>
 @else
 <div class="address_form_agile">

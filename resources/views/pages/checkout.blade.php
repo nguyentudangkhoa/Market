@@ -108,7 +108,6 @@
             <div class="checkout-left">
 				<div class="address_form_agile">
 					<h4>Add a new Details</h4>
-
                     <input type="hidden" name="_token" value={{ csrf_token() }} >
                     @if(Session::has('Thongbao'))
                         <div class="alert alert-success">{{Session::get('Thongbao')}}</div>
@@ -137,8 +136,12 @@
 										<input type="text" placeholder="Notes" name="notes" required="">
                                     </div>
                                     <div class="controls">
-										<input type="text" placeholder="Email" name="email" required="">
+                                        <input type="text" placeholder="Email" id="email" name="email" required="">
+
 									</div>
+                                </div>
+                                <div class="first-row">
+                                    <label id="validate_email" style="color: red"></label>
                                 </div>
                                 <div class="first-row">
                                         Gender:
@@ -155,22 +158,24 @@
 				<div class="clearfix"> </div>
 			</div>
         </div>
-        {{ csrf_field() }}
     </form>
     <script>
         $(document).ready(function(){
              $('#email').keyup(function(){
-                    var email = $(this).val();
+                    var email_checkout = $(this).val();
                     if(email != '')
                     {
                      var _token = $('input[name="_token"]').val();
                      $.ajax({
                       url:"{{ route('validateSignUp') }}",
                       method:"POST",
-                      data:{email:email, _token:_token},
+                      data:{email_checkout:email_checkout, _token:_token},
                       success:function(data){
-                        $('#validate_email').fadeIn();
-                        $('#validate_email').html(data);
+                        setTimeout(()=>{
+                            $('#validate_email').fadeIn();
+                            $('#validate_email').html(data);
+                        },1000);
+
                       }
                      });
                     }else{
