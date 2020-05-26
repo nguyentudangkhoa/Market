@@ -202,10 +202,11 @@ class HomeController extends Controller
             }
         }
         $data = [
-            'title' => 'Title: Thanks from Grocery Shoppy',
-            'body' => 'Body: This is for testing email using smtp'
-        ];
-        Mail::to($req->email)->send(new SendMail($data));
+            'title' => 'Thanks from Grocery Shoppy',
+            'body' => 'Thanks for create an account',
+            'full_name'=> $req->full_name
+        ];//get data to app/Mail/SendMail
+        Mail::to($req->email)->send(new SendMail($data));//send mail
         $user->save(); //Add item to database
         return redirect()->back()->with('ThanhCong', 'Tạo tài khoản thành công');
     }
