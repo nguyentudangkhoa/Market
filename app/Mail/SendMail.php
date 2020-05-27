@@ -29,7 +29,7 @@ class SendMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Thanks for signup a account from our website')
-                    ->view('email.sendmail')->with(['details'=>$this->data]);//send mail throught layout email/sendmail
+        return $this->subject($this->data['big_title'])
+                    ->view($this->data['layout'])->with(['details'=>$this->data]);//send mail throught layout email/sendmail
     }
 }

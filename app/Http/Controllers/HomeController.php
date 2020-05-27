@@ -202,9 +202,15 @@ class HomeController extends Controller
             }
         }
         $data = [
-            'title' => 'Thanks from Grocery Shoppy',
-            'body' => 'Thanks for create an account',
-            'full_name'=> $req->full_name
+            'layout'    =>  'email.sendmail',
+            'title'     =>  'Thanks from Grocery Shoppy',
+            'body'      =>  'Thanks for create an account',
+            'full_name' =>  $req->full_name,
+            'big_title' =>  'Thanks for signup a account from our website',
+            'content'   =>  'Thanks for become our member, we verry grateful about that.
+                            You can get a discount or coupon information when you become our member on
+                            holiday or special day like your birthday.',
+            'last'      =>  'Enjoy your shopping time'
         ];//get data to app/Mail/SendMail
         Mail::to($req->email)->send(new SendMail($data));//send mail
         $user->save(); //Add item to database
@@ -302,6 +308,20 @@ class HomeController extends Controller
             $bill_detail->unit_price = ($value['price'] / $req->quantity);
             $bill_detail->save(); //Add item to bill_detail table
         }
+        $data = [
+            'layout'    =>  'email.sendmail-checkout',
+            'title'     =>  'Thanks from Grocery Shoppy',
+            'body'      =>  'Thank for purchase our product',
+            'full_name' =>  $req->name,
+            'big_title' =>  'Thanks for purchase our product',
+            'content'   =>  'Thanks for purchase our product, we verry grateful about that.
+                            Your total is '.number_format($cart->totalPrice).' VND. We will delivery your products as soon as we can',
+            'last'      =>  'Enjoy your shopping time',
+            'item'      =>  Session('cart')->items,
+            'Total'      =>  Session('cart')->totalPrice
+        ];//get data to app/Mail/SendMail
+        // dd(Session('cart')->items);
+        Mail::to($req->email)->send(new SendMail($data));//send mail
         Session::forget('cart');
         return redirect()->route('checkout.html')->with('thongbao', 'Đặt hàng thành công');
     }
