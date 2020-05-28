@@ -27,13 +27,12 @@
 				</span>
 			</h3>
             <!-- //tittle heading -->
-            @foreach ($sanpham as $item)
 			<div class="col-md-5 single-right-left ">
 				<div class="grid source/images_3_of_2">
 					<div class="flexslider">
-                            <div sanpham-thumb="source/images/{{$item->image}}">
+                            <div sanpham-thumb="source/images/{{$sanpham->image}}">
 								<div class="thumb-image">
-									<img src="source/images/{{$item->image}}" sanpham-imagezoom="true" class="img-responsive" alt=""> </div>
+									<img src="source/images/{{$sanpham->image}}" sanpham-imagezoom="true" class="img-responsive" alt=""> </div>
 							</div>
 						<div class="clearfix"></div>
 					</div>
@@ -41,29 +40,168 @@
 			</div>
 			<div class="col-md-7 single-right-left simpleCart_shelfItem">
 
-                <h3>{{$item->name}}</h3>
+                <h3>{{$sanpham->name}}</h3>
+                <input type="hidden" id="id_product" name="" value="{{$sanpham->id}}">
+                    <div class="rating1" aria-disabled="true">
+                        <span class="starRating">
+                            {{ csrf_field() }}
+                            @if($average==5)
+                            <input id="rating5" type="radio" name="rating" value="5" checked="">
+                            <label for="rating5">5</label>
+                            <input id="rating4" type="radio" name="rating" value="4">
+                            <label for="rating4">4</label>
+                            <input id="rating3" type="radio" name="rating" value="3">
+                            <label for="rating3">3</label>
+                            <input id="rating2" type="radio" name="rating" value="2">
+                            <label for="rating2">2</label>
+                            <input id="rating1" type="radio" name="rating" value="1">
+                            <label for="rating1">1</label>
+                            @elseif($average==4)
+                            <input id="rating5" type="radio" name="rating" value="5">
+                            <label for="rating5">5</label>
+                            <input id="rating4" type="radio" name="rating" value="4" checked="">
+                            <label for="rating4">4</label>
+                            <input id="rating3" type="radio" name="rating" value="3">
+                            <label for="rating3">3</label>
+                            <input id="rating2" type="radio" name="rating" value="2">
+                            <label for="rating2">2</label>
+                            <input id="rating1" type="radio" name="rating" value="1">
+                            <label for="rating1">1</label>
+                            @elseif($average==3)
+                            <input id="rating5" type="radio" name="rating" value="5">
+                            <label for="rating5">5</label>
+                            <input id="rating4" type="radio" name="rating" value="4">
+                            <label for="rating4">4</label>
+                            <input id="rating3" type="radio" name="rating" value="3" checked="">
+                            <label for="rating3">3</label>
+                            <input id="rating2" type="radio" name="rating" value="2">
+                            <label for="rating2">2</label>
+                            <input id="rating1" type="radio" name="rating" value="1">
+                            <label for="rating1">1</label>
+                            @elseif($average==2)
+                            <input id="rating5" type="radio" name="rating" value="5">
+                            <label for="rating5">5</label>
+                            <input id="rating4" type="radio" name="rating" value="4">
+                            <label for="rating4">4</label>
+                            <input id="rating3" type="radio" name="rating" value="3">
+                            <label for="rating3">3</label>
+                            <input id="rating2" type="radio" name="rating" value="2" checked="">
+                            <label for="rating2">2</label>
+                            <input id="rating1" type="radio" name="rating" value="1">
+                            <label for="rating1">1</label>
+                            @elseif($average==1)
+                            <input id="rating5" type="radio" name="rating" value="5">
+                            <label for="rating5">5</label>
+                            <input id="rating4" type="radio" name="rating" value="4">
+                            <label for="rating4">4</label>
+                            <input id="rating3" type="radio" name="rating" value="3">
+                            <label for="rating3">3</label>
+                            <input id="rating2" type="radio" name="rating" value="2">
+                            <label for="rating2">2</label>
+                            <input id="rating1" type="radio" name="rating" value="1" checked="">
+                            <label for="rating1">1</label>
+                            @else
+                            <input id="rating5" type="radio" name="rating" value="5">
+                            <label for="rating5">5</label>
+                            <input id="rating4" type="radio" name="rating" value="4">
+                            <label for="rating4">4</label>
+                            <input id="rating3" type="radio" name="rating" value="3">
+                            <label for="rating3">3</label>
+                            <input id="rating2" type="radio" name="rating" value="2">
+                            <label for="rating2">2</label>
+                            <input id="rating1" type="radio" name="rating" value="1">
+                            <label for="rating1">1</label>
+                            @endif
 
+                        </span>
+                    </div>
 
-				<div class="rating1">
-					<span class="starRating">
-						<input id="rating5" type="radio" name="rating" value="5">
-						<label for="rating5">5</label>
-						<input id="rating4" type="radio" name="rating" value="4">
-						<label for="rating4">4</label>
-						<input id="rating3" type="radio" name="rating" value="3" checked="">
-						<label for="rating3">3</label>
-						<input id="rating2" type="radio" name="rating" value="2">
-						<label for="rating2">2</label>
-						<input id="rating1" type="radio" name="rating" value="1">
-						<label for="rating1">1</label>
-					</span>
-				</div>
+                <script type="text/javascript">
+                $(document).ready(function(){
+                    $('#rating5').on('click',function(){
+                        var rating = $(this).val();
+                        var id_product = $('#id_product').val();
+                        if(rating!=""){
+                            var _token = $('input[name="_token"]').val();
+                            $.ajax({
+                                url:"{{ route('rating-product') }}",
+                                method:"POST",
+                                data:{rating:rating, id_product:id_product, _token:_token},
+                                success:function(data){
+                                    alert('Thanks for rating')
+                                }
+                            });
+                        }
+                    });
+                    $('#rating4').on('click',function(){
+                        var rating = $(this).val();
+                        var id_product = $('#id_product').val();
+                        if(rating!=""){
+                            var _token = $('input[name="_token"]').val();
+                            $.ajax({
+                                url:"{{ route('rating-product') }}",
+                                method:"POST",
+                                data:{rating:rating, id_product:id_product, _token:_token},
+                                success:function(data){
+                                    alert('Thanks for rating')
+                                }
+                            });
+                        }
+                    });
+                    $('#rating3').on('click',function(){
+                        var rating = $(this).val();
+                        var id_product = $('#id_product').val();
+                        if(rating!=""){
+                            var _token = $('input[name="_token"]').val();
+                            $.ajax({
+                                url:"{{ route('rating-product') }}",
+                                method:"POST",
+                                data:{rating:rating, id_product:id_product, _token:_token},
+                                success:function(data){
+                                    alert('Thanks for rating')
+                                }
+                            });
+                        }
+                    });
+                    $('#rating2').on('click',function(){
+                        var rating = $(this).val();
+                        var id_product = $('#id_product').val();
+                        if(rating!=""){
+                            var _token = $('input[name="_token"]').val();
+                            $.ajax({
+                                url:"{{ route('rating-product') }}",
+                                method:"POST",
+                                data:{rating:rating, id_product:id_product, _token:_token},
+                                success:function(data){
+                                    alert('Thanks for rating')
+                                }
+                            });
+                        }
+                    });
+                    $('#rating1').on('click',function(){
+                        var rating = $(this).val();
+                        var id_product = $('#id_product').val();
+                        if(rating!=""){
+                            var _token = $('input[name="_token"]').val();
+                            $.ajax({
+                                url:"{{ route('rating-product') }}",
+                                method:"POST",
+                                data:{rating:rating, id_product:id_product, _token:_token},
+                                success:function(data){
+                                    alert('Thanks for rating')
+                                }
+                            });
+                        }
+                    });
+
+                });
+                </script>
 				<p>
-                    @if ($item->promotion_price > 0)
-                    <span class="item_price">{{number_format($item->promotion_price)}}đ</span>
-					<del>{{number_format($item->unit_price)}}đ</del>(-{{round(100 - (($item->promotion_price/$item->unit_price)*100),1)}}%)
+                    @if ($sanpham->promotion_price > 0)
+                    <span class="item_price">{{number_format($sanpham->promotion_price)}}đ</span>
+					<del>{{number_format($sanpham->unit_price)}}đ</del>(-{{round(100 - (($sanpham->promotion_price/$sanpham->unit_price)*100),1)}}%)
                     @else
-                    <span class="item_price">{{number_format($item->unit_price)}}đ</span>
+                    <span class="item_price">{{number_format($sanpham->unit_price)}}đ</span>
                     @endif
 
 					<label>Free delivery</label>
@@ -80,10 +218,10 @@
 						</li>
 						<li>
                             1 offer from
-                            @if($item->promotion_price > 0)
-                                <span class="item_price">{{number_format($item->promotion_price)}}đ</del></span>
+                            @if($sanpham->promotion_price > 0)
+                                <span class="item_price">{{number_format($sanpham->promotion_price)}}đ</del></span>
                             @else
-                                <span class="item_price">{{number_format($item->unit_price)}}đ</span>
+                                <span class="item_price">{{number_format($sanpham->unit_price)}}đ</span>
                             @endif
 						</li>
 					</ul>
@@ -113,7 +251,7 @@
 				</div>
 				<div class="occasion-cart">
 					<div class="snipcart-details top_brand_home_details" >
-						<form action="{{route('add-to-cart',$item->id)}}" method="get">
+						<form action="{{route('add-to-cart',$sanpham->id)}}" method="get">
 							<input type="submit" name="submit" value="Add to cart" class="button" />
 						</form>
 					</div>
@@ -121,7 +259,6 @@
 				</div>
 
             </div>
-            @endforeach
             <div class="clearfix"> </div>
 		</div>
 	</div>

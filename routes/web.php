@@ -207,3 +207,7 @@ Route::get('DeleteUser/{id}', [
     'as' => 'DeleteUser',
     'uses' => 'HomeController@DeleteUser'
 ]);
+Route::post('rating-product', [
+    'as' => 'rating-product',
+    'uses' => 'HomeController@rating'
+]);

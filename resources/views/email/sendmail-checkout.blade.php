@@ -8,11 +8,10 @@
     <h1>{{$data['title']}}</h1>
     <p>{{$data['body']}}</p>
     <p>Dear {{$data['full_name']}}</p>
-    <table border="1">
+    <table border="1 solid">
         <tr>
             <th>Product name</th>
             <th>Price</th>
-            <th>Total</th>
         </tr>
 
     @foreach ($data['item'] as $key=>$value )
@@ -25,10 +24,8 @@
             @endif
         </tr>
     @endforeach
-        <tr>
-            <td></td>
-            <td></td>
-            <td style="">{{$data['Total']}}</td>
+        <tr style="background-color: aqua">
+            <td colspan="2">Total: {{number_format($data['Total'])}}VND</td>
         </tr>
     </table>
     <p>{{$data['content']}}</p>

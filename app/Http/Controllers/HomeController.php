@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\File;
 use PDF;
 use \App\Mail\SendMail;
+use App\rating;
+use ArrayObject;
 use Mail;
 class HomeController extends Controller
 {
@@ -35,12 +37,23 @@ class HomeController extends Controller
     //Template Kitchen
     public function Single(Request $rep)
     {
-        $sanpham = Product::where('id', $rep->id)->get();
-        $array = json_decode($sanpham, true); // chuyển json thành array
-        $sp = array_column($array, 'id_type'); // lấy item id_type của array
+        $sanpham = Product::where('id', $rep->id)->first();
         //$sp2 = json_decode($sanpham,true);
-        $data2 = Product::where('id_type', $sp)->limit(10)->orderBy('created_at','asc')->get(); // lấy sản phẩm liên quan
-        return view('pages.single', compact('sanpham', 'data2', 'array'));
+        $rating = rating::where('id_product',$sanpham->id)->get();
+        $average=0;
+        $star=0;
+        $i=0;
+        foreach($rating as $rate){
+            $star+=$rate->rate;
+            $i++;
+        }
+        if($i==0){
+            $average=0;
+        }else{
+            $average = (int)($star/$i);
+        }
+        $data2 = Product::where('id_type', $sanpham->id_type)->limit(10)->orderBy('created_at','asc')->get(); // lấy sản phẩm liên quan
+        return view('pages.single', compact('sanpham', 'data2','average'));
     }
     //Template Kitchen
     public function Product()
@@ -668,6 +681,11 @@ class HomeController extends Controller
             }
             $members->delete();
             return redirect()->back()->with("Report","Delete User successfully");
+        }
+    }
+    public function rating(Request $req){
+        if($req->rating){
+            rating::create(['id_product'=>$req->id_product,'rate'=>$req->rating]);
         }
     }
 }
