@@ -15,7 +15,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <meta name="keywords" content="Consultancy Profile Widget Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-        function hideURLbar(){ window.scrollTo(0,1); } </script>
+        function hideURLbar(){ window.scrollTo(0,1); }; </script>
 <base href="{{asset('')}}">
 <!-- js -->
 <script src="source/js/jquery-2.1.4.min.js" type="text/javascript"></script>
@@ -53,7 +53,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</li>
 			</ul>
 		</div>
-		<div id="wrapper" class="w3ls_wrapper w3layouts_wrapper">
+		<div id="wrapper"  class="w3ls_wrapper w3layouts_wrapper">
 			<div id="steps" style="margin:0 auto;" class="agileits w3_steps">
             <form action="{{route('updateProfile',$user->id)}}" method="get" class="w3_form w3l_form_fancy">
 					<fieldset class="step agileinfo w3ls_fancy_step">
@@ -83,8 +83,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											<li><b>E-MAIL </b></li>
                                             <li><a href="mailto:example@mail.com">: {{$user->email}}</a></li>
                                             <li><input type="submit" value="Update" class="btn btn-danger"/></li>
+                                            <li>
+                                                <a href="{{ route('History') }}" class="Buyed"> >> Buy History</a>
+                                            </li>
 										</ul>
-									</li>
+                                    </li>
 
 								</ul>
 							</div>

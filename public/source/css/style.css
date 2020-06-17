@@ -2135,6 +2135,9 @@ h3.agileits-icons-title {
 }
 
 @media (max-width:991px) {
+    .scroll-now{
+        overflow-x:auto;
+    }
     h3.agileits-icons-title {
         font-size: 28px;
     }
@@ -5020,6 +5023,8 @@ select.form-control.option-w3ls {
         font-size: 12px;
     }
 }
+
+
 
 @media(max-width: 414px) {
     .carousel-caption h2,

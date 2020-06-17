@@ -52,7 +52,9 @@ class HomeController extends Controller
         }else{
             $average = (int)($star/$i);
         }
+
         $data2 = Product::where('id_type', $sanpham->id_type)->limit(10)->orderBy('created_at','asc')->get(); // lấy sản phẩm liên quan
+
         return view('pages.single', compact('sanpham', 'data2','average'));
     }
     //Template Kitchen
@@ -317,8 +319,8 @@ class HomeController extends Controller
             $bill_detail = new BillDetail;
             $bill_detail->id_bill = $bill->id;
             $bill_detail->id_product = $key;
-            $bill_detail->quantity = $req->quantity;
-            $bill_detail->unit_price = ($value['price'] / $req->quantity);
+            $bill_detail->quantity = $value['qty'];
+            $bill_detail->unit_price = ($value['price'] / $value['qty']);
             $bill_detail->save(); //Add item to bill_detail table
         }
         $data = [
@@ -568,8 +570,13 @@ class HomeController extends Controller
         $data = Bill::find($req->id);
         $billDetails = BillDetail::where('id_bill',$data->id)->get();
         $customer = Customer::where('id',$data->id_customer)->get();
+        $rating = rating::where('id_bill',$req->id)->get();
         foreach($billDetails as $item){
             $item->delete();
+        }
+        foreach($rating as $rate){
+            $rate->id_bill = null;
+            $rate->save();
         }
         $customer = Customer::where('id',$data->id_customer)->first();
         $customer->quantity -= 1;
@@ -685,7 +692,63 @@ class HomeController extends Controller
     }
     public function rating(Request $req){
         if($req->rating){
-            rating::create(['id_product'=>$req->id_product,'rate'=>$req->rating]);
+            $rate = rating::where('id_product',$req->id_product)->where('id_bill',$req->bill_id)->first();
+            if($rate){
+                echo "You have Rated for this product";
+            }else{
+                rating::create(['id_product'=>$req->id_product,'id_users'=>Auth::user()->id,'id_bill'=>$req->bill_id,'rate'=>$req->rating]);
+                echo "Thanks for rating for this product";
+            }
+
         }
+    }
+    //buy history
+    public function History(){
+        $user = Customer::where('email',Auth::user()->email)->get();
+        $array = array();
+        foreach($user as $user_item){
+            $bill = Bill::where('id_customer',$user_item->id)->get();
+            foreach($bill as $bill_item){
+                $bill_details = BillDetail::where('id_bill',$bill_item->id)->get();
+                foreach($bill_details as $item_detail){
+                    $products = Product::where('id',$item_detail->id_product)->get();
+                    foreach($products as $item_product){
+                        $average = 0;
+                        $i=0;
+                        $star=0;
+                        $rating = rating::where('id_product',$item_product->id)->get();
+                        foreach($rating as $rate){
+                            $star+=$rate->rate;
+                            $i++;
+                        }
+                        if($i==0){
+                            $average=0;
+                        }else{
+                            $average = (int)($star/$i);
+                        }
+                        $object = (object)[
+                            'details_id'        =>          $item_detail->id,
+                            'bill_id'           =>          $bill_item->id,
+                            'status'            =>          $bill_item->status_bill,
+                            'date_order'        =>          $bill_item->date_order,
+                            'payment'           =>          $bill_item->payment,
+                            'total'             =>          $bill_item->total,
+                            'status_bill'       =>          $bill_item->status_bill,
+                            'img'               =>          $item_product->image,
+                            'name'              =>          $item_product->name,
+                            'unit_price'        =>          $item_product->unit_price,
+                            'promotion_price'   =>          $item_product->promotion_price,
+                            'average'           =>          $average,
+                            'id_product'        =>          $item_product->id
+                        ];
+                        array_push($array,$object);
+                    }
+
+                }
+
+            }
+        }
+
+        return view('pages.history',compact('array'));
     }
 }

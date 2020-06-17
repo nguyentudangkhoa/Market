@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 12, 2020 at 04:24 AM
+-- Generation Time: Jun 17, 2020 at 04:29 PM
 -- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.4
+-- PHP Version: 7.4.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -44,7 +44,8 @@ CREATE TABLE `bills` (
 --
 
 INSERT INTO `bills` (`id`, `id_customer`, `date_order`, `total`, `status_bill`, `payment`, `note`, `created_at`, `updated_at`) VALUES
-(43, 30, '2020-05-11', 480000, '0', 'COD', 'giao dúng hạn', '2020-05-11 07:17:59', '2020-05-11 07:17:59');
+(98, 41, '2020-06-11', 150000, '1', 'COD', 'giao dúng hạn', '2020-06-11 06:59:31', '2020-06-11 06:59:31'),
+(99, 42, '2020-06-11', 30000, '1', 'COD', 'giao dúng hạn', '2020-06-11 07:37:32', '2020-06-11 07:37:32');
 
 -- --------------------------------------------------------
 
@@ -67,8 +68,8 @@ CREATE TABLE `bill_detail` (
 --
 
 INSERT INTO `bill_detail` (`id`, `id_bill`, `id_product`, `quantity`, `unit_price`, `created_at`, `updated_at`) VALUES
-(58, 43, 22, 1, 300000, '2020-05-11 07:17:59', '2020-05-11 07:17:59'),
-(59, 43, 24, 1, 180000, '2020-05-11 07:17:59', '2020-05-11 07:17:59');
+(150, 98, 22, 1, 150000, '2020-06-11 06:59:05', '2020-06-11 06:59:05'),
+(151, 99, 75, 1, 30000, '2020-06-11 07:34:59', '2020-06-11 07:34:59');
 
 -- --------------------------------------------------------
 
@@ -95,7 +96,11 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`id`, `name`, `gender`, `email`, `address`, `phone_number`, `note`, `quantity`, `member`, `created_at`, `updated_at`) VALUES
-(30, 'nguyentudangkhoa', 'Nam', 'nguyentudangkhoa@gmail.com', '75 Võ Hữu', '(+84) 389643555', 'giao dúng hạn', 1, 1, '2020-05-11 07:48:03', '2020-05-11 07:48:03');
+(38, 'Nguyễn Từ Đăng Khoa', 'Nam', 'khoakute1997@gmail.com', 'Phan Thiet', '0389643555', 'giao dúng hạn', 0, 1, '2020-06-11 06:51:29', '2020-06-11 06:51:29'),
+(39, 'nguyentudangkhoa', 'Nam', 'khoakute1997@gmail.com', 'Phan Thiet', '(+84) 389643555', 'giao dúng hạn', -3, 1, '2020-06-11 06:51:25', '2020-06-11 06:51:25'),
+(40, 'Khoa', 'Nam', 'khoakute1997@gmail.com', 'Phan thiết', '0948877166', 'Đéo có note', 0, 1, '2020-06-11 06:47:35', '2020-06-11 06:47:35'),
+(41, 'Nguyễn Từ Đăng Khoa', 'Nam', 'khoakute1997@gmail.com', '75 Võ Hữu', '0389643555', 'giao dúng hạn', 1, 1, '2020-06-11 06:59:04', '2020-06-11 06:59:04'),
+(42, 'Nguyễn Từ Đăng Khoa', 'Nam', 'nguyentudangkhoa@gmail.com', 'Phan Thiet', '(+84) 389643555', 'giao dúng hạn', 1, 1, '2020-06-11 07:34:59', '2020-06-11 07:34:59');
 
 -- --------------------------------------------------------
 
@@ -180,6 +185,31 @@ INSERT INTO `products` (`id`, `name`, `id_type`, `description`, `unit_price`, `p
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `rating`
+--
+
+CREATE TABLE `rating` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `id_product` int(10) UNSIGNED NOT NULL,
+  `id_users` int(10) UNSIGNED DEFAULT NULL,
+  `id_bill` int(10) UNSIGNED DEFAULT NULL,
+  `rate` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
+
+--
+-- Dumping data for table `rating`
+--
+
+INSERT INTO `rating` (`id`, `id_product`, `id_users`, `id_bill`, `rate`, `created_at`, `updated_at`) VALUES
+(25, 22, 36, NULL, 5, '2020-06-11 06:54:39', '2020-06-11 06:56:25'),
+(26, 22, 36, 98, 4, '2020-06-11 06:59:42', '2020-06-11 06:59:42'),
+(27, 75, 17, 99, 4, '2020-06-11 07:37:40', '2020-06-11 07:37:40');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `slide`
 --
 
@@ -251,7 +281,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `full_name`, `email`, `password`, `phone`, `address`, `remember_token`, `created_at`, `updated_at`, `authority`, `images_prof`) VALUES
 (12, 'admin', 'admin@gmail.com', '$2y$10$rDLe3iHhpdhI5udzDeZuhuk6K0amG9E3DVvurhQG/Nua0zeqXUaci', NULL, NULL, NULL, '2019-12-22 05:02:12', '2019-12-22 05:02:12', 1, NULL),
-(17, 'Nguyễn Từ Đăng Khoa', 'nguyentudangkhoa@gmail.com', '$2y$10$pbDdoVfl2AFfGKp9DG8so.RmlGJpN6RRmmHK1Xu/gjmyBBWeOK5hy', '0389643555', '75 Võ Hữu', NULL, '2020-05-05 12:59:40', '2020-05-05 13:01:28', 0, '68817350_2176078199184468_8622629880216944640_o.jpg');
+(17, 'Nguyễn Từ Đăng Khoa', 'nguyentudangkhoa@gmail.com', '$2y$10$pbDdoVfl2AFfGKp9DG8so.RmlGJpN6RRmmHK1Xu/gjmyBBWeOK5hy', '0389643555', '75 Võ Hữu', NULL, '2020-05-05 12:59:40', '2020-05-05 13:01:28', 0, '68817350_2176078199184468_8622629880216944640_o.jpg'),
+(36, 'Nguyễn Từ Đăng Khoa', 'khoakute1997@gmail.com', '$2y$10$rWTE4PlOAAfEwsfzxzfJyu0A6NdZzL6q9HK1aQ6XUebCnwwbLVl2W', '0389643555', 'Hồ Chí Minh', NULL, '2020-05-27 03:04:11', '2020-06-11 04:59:08', 0, 'avatar04.png');
 
 --
 -- Indexes for dumped tables
@@ -292,6 +323,15 @@ ALTER TABLE `products`
   ADD KEY `products_id_type_foreign` (`id_type`);
 
 --
+-- Indexes for table `rating`
+--
+ALTER TABLE `rating`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_rating` (`id_product`),
+  ADD KEY `fk_users_rating` (`id_users`),
+  ADD KEY `fk_bill_rating` (`id_bill`);
+
+--
 -- Indexes for table `slide`
 --
 ALTER TABLE `slide`
@@ -318,25 +358,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `bills`
 --
 ALTER TABLE `bills`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 
 --
 -- AUTO_INCREMENT for table `bill_detail`
 --
 ALTER TABLE `bill_detail`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
 
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+
+--
+-- AUTO_INCREMENT for table `rating`
+--
+ALTER TABLE `rating`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `slide`
@@ -354,7 +400,7 @@ ALTER TABLE `type_products`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- Constraints for dumped tables
@@ -378,6 +424,14 @@ ALTER TABLE `bill_detail`
 --
 ALTER TABLE `products`
   ADD CONSTRAINT `products_id_type_foreign` FOREIGN KEY (`id_type`) REFERENCES `type_products` (`id`);
+
+--
+-- Constraints for table `rating`
+--
+ALTER TABLE `rating`
+  ADD CONSTRAINT `fk_bill_rating` FOREIGN KEY (`id_bill`) REFERENCES `bills` (`id`),
+  ADD CONSTRAINT `fk_rating` FOREIGN KEY (`id_product`) REFERENCES `products` (`id`),
+  ADD CONSTRAINT `fk_users_rating` FOREIGN KEY (`id_users`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

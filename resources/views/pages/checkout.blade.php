@@ -63,7 +63,7 @@
 									<div class="quantity">
 										<div class="">
 											<div class="">
-                                            <input id="quantity" name="quantity" style="width:50%; text-align:center" value="{{$product['qty']}}">
+                                            <input id="quantity" name="quantity" disabled style="width:50%; text-align:center" value="{{$product['qty']}}">
                                             {{ csrf_field() }}
 											</div>
 										</div>

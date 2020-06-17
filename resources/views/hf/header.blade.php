@@ -169,7 +169,7 @@
                                 @if(Auth::user()->authority == 1)
 
                                     <li class="dropdown" style="background-color:#E33539">
-                                        <a href="{{route('product')}}" class="dropdown-toggle nav-stylehead" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Function
+                                        <a href="{{route('product')}}" class="dropdown-toggle nav-stylehead" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin
                                             <span class="caret"></span>
                                         </a>
                                         <ul class="dropdown-menu multi-column columns-3">

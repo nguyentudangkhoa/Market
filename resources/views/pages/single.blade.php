@@ -41,10 +41,8 @@
 			<div class="col-md-7 single-right-left simpleCart_shelfItem">
 
                 <h3>{{$sanpham->name}}</h3>
-                <input type="hidden" id="id_product" name="" value="{{$sanpham->id}}">
                     <div class="rating1" aria-disabled="true">
                         <span class="starRating">
-                            {{ csrf_field() }}
                             @if($average==5)
                             <input id="rating5" type="radio" name="rating" value="5" checked="">
                             <label for="rating5">5</label>
@@ -115,87 +113,6 @@
 
                         </span>
                     </div>
-
-                <script type="text/javascript">
-                $(document).ready(function(){
-                    $('#rating5').on('click',function(){
-                        var rating = $(this).val();
-                        var id_product = $('#id_product').val();
-                        if(rating!=""){
-                            var _token = $('input[name="_token"]').val();
-                            $.ajax({
-                                url:"{{ route('rating-product') }}",
-                                method:"POST",
-                                data:{rating:rating, id_product:id_product, _token:_token},
-                                success:function(data){
-                                    alert('Thanks for rating')
-                                }
-                            });
-                        }
-                    });
-                    $('#rating4').on('click',function(){
-                        var rating = $(this).val();
-                        var id_product = $('#id_product').val();
-                        if(rating!=""){
-                            var _token = $('input[name="_token"]').val();
-                            $.ajax({
-                                url:"{{ route('rating-product') }}",
-                                method:"POST",
-                                data:{rating:rating, id_product:id_product, _token:_token},
-                                success:function(data){
-                                    alert('Thanks for rating')
-                                }
-                            });
-                        }
-                    });
-                    $('#rating3').on('click',function(){
-                        var rating = $(this).val();
-                        var id_product = $('#id_product').val();
-                        if(rating!=""){
-                            var _token = $('input[name="_token"]').val();
-                            $.ajax({
-                                url:"{{ route('rating-product') }}",
-                                method:"POST",
-                                data:{rating:rating, id_product:id_product, _token:_token},
-                                success:function(data){
-                                    alert('Thanks for rating')
-                                }
-                            });
-                        }
-                    });
-                    $('#rating2').on('click',function(){
-                        var rating = $(this).val();
-                        var id_product = $('#id_product').val();
-                        if(rating!=""){
-                            var _token = $('input[name="_token"]').val();
-                            $.ajax({
-                                url:"{{ route('rating-product') }}",
-                                method:"POST",
-                                data:{rating:rating, id_product:id_product, _token:_token},
-                                success:function(data){
-                                    alert('Thanks for rating')
-                                }
-                            });
-                        }
-                    });
-                    $('#rating1').on('click',function(){
-                        var rating = $(this).val();
-                        var id_product = $('#id_product').val();
-                        if(rating!=""){
-                            var _token = $('input[name="_token"]').val();
-                            $.ajax({
-                                url:"{{ route('rating-product') }}",
-                                method:"POST",
-                                data:{rating:rating, id_product:id_product, _token:_token},
-                                success:function(data){
-                                    alert('Thanks for rating')
-                                }
-                            });
-                        }
-                    });
-
-                });
-                </script>
 				<p>
                     @if ($sanpham->promotion_price > 0)
                     <span class="item_price">{{number_format($sanpham->promotion_price)}}đ</span>

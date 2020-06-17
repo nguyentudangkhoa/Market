@@ -11,12 +11,14 @@
     <table border="1 solid">
         <tr>
             <th>Product name</th>
+            <th>Quantity</th>
             <th>Price</th>
         </tr>
 
     @foreach ($data['item'] as $key=>$value )
         <tr>
             <td>{{$value['item']->name}}</td>
+            <td>{{$value['qty']}}</td>
             @if ($value['item']->promotion_price>0)
                 <td>{{number_format($value['item']->promotion_price)}}VND</td>
             @else
@@ -24,8 +26,8 @@
             @endif
         </tr>
     @endforeach
-        <tr style="background-color: aqua">
-            <td colspan="2">Total: {{number_format($data['Total'])}}VND</td>
+        <tr style="background-color: aqua" style="float: right">
+            <td colspan="3">Total: {{number_format($data['Total'])}}VND</td>
         </tr>
     </table>
     <p>{{$data['content']}}</p>

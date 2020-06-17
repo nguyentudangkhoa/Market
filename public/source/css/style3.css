@@ -365,6 +365,10 @@ ul.address li ul.address-text li {
 	-webkit-animation: shine .95s;
 	animation: shine .95s;
 }
+.Buyed:hover{
+    color: rgba(243, 75, 75, 0.466);
+    transform: matrix();
+}
 @-webkit-keyframes shine {
 	100% {
 		left: 125%;

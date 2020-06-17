@@ -211,3 +211,7 @@ Route::post('rating-product', [
     'as' => 'rating-product',
     'uses' => 'HomeController@rating'
 ]);
+Route::get('History', [
+    'as' => 'History',
+    'uses' => 'HomeController@History'
+]);
